@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="false" key="EXT_FOLDER_LAST_SUBDIR_SETTING"/>
+	<item value="300" key="org.eclipse.jdt.internal.debug.ui.actions.PopupInspectAction$2DIALOG_WIDTH"/>
+	<item value="/home/dthibau/Dev/outils/mojarra-2.1.7-jbossorg-2/jsf-ri/src/main/java" key="EXT_FOLDER_LAST_PATH_SETTING"/>
+	<item value="250" key="org.eclipse.jdt.internal.debug.ui.actions.PopupInspectAction$2DIALOG_HEIGHT"/>
+	<section name="org.eclipse.debug.ui.sourcelookup.SourceLookupDialog">
+		<item value="613" key="DIALOG_WIDTH"/>
+		<item value="240" key="DIALOG_Y_ORIGIN"/>
+		<item value="622" key="DIALOG_X_ORIGIN"/>
+		<item value="454" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

@@ -1,0 +1,34 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<h:form class="quicksearch">
+		<a4j:region id="regionRechercheRapide">
+			<div id="edit_quicksearch_wrapper" class="form-item autocomplete">
+				<h:outputLabel value="#{messages['quickSearch']}" />
+				<h:inputText styleClass="form_text" maxlength="40" size="40"
+					value="#{manager.pattern}">
+					<a4j:ajax event="keyup" render="demandesList" queueId="syndicQueue"/>
+					<s:conversationId/>
+				</h:inputText>			
+			</div>
+		</a4j:region>
+		<a4j:status for="regionRechercheRapide">
+			<f:facet name="start">
+				<div id="loading" class="wait_autocomplete" />
+			</f:facet>
+			<f:facet name="stop">
+				<div id="notloading" class="wait_autocomplete hidden" />
+			</f:facet>
+		</a4j:status>
+	</h:form>
+
+
+</ui:composition>

@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+
+	<a:outputPanel layout="block" id="sectionPanel" styleClass="section #{classeSection}">
+		<ui:insert name="section" />
+	</a:outputPanel>
+
+	<a:outputPanel layout="block" >
+		<ui:insert name="buttonBar" />
+	</a:outputPanel>
+
+</ui:composition>

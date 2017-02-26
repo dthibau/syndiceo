@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-init-method="init" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+	<bean id="taskHandler" class="com.syndiceo.proc.TaskHandler" factory-method="getInstance">
+		<property name="taskDao" ref="taskDao"/>
+		<property name="jbpmHelper" ref="jbpmHelper"/>
+	</bean>
+
+	<bean id="taskDao" class="com.syndiceo.mock.MockTaskDaoImpl"/>
+	
+	<bean id="jbpmHelper" class="com.syndiceo.mock.MockJbpmHelperImpl" init-method="init"/>
+
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0" xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+<named-native-query name="ProcessInstancesWaitingForEvent" result-set-mapping="ProcessInstancesWaitingForEvent.mapping">
+    <query>    
+    select distinct
+     p.InstanceId
+    from
+      ProcessInstanceInfo p
+    join
+      EventTypes e on p.InstanceId=e.InstanceId 
+    and
+      :type = e.eventTypes
+    </query>
+</named-native-query> 
+<sql-result-set-mapping name="ProcessInstancesWaitingForEvent.mapping">
+  <column-result name="InstanceId" />
+</sql-result-set-mapping>
+<entity class="org.jbpm.persistence.processinstance.ProcessInstanceInfo">
+    <attributes>
+        <element-collection name="eventTypes">
+            <collection-table name="EventTypes">
+                <join-column name="InstanceId" />
+            </collection-table>
+        </element-collection>
+    </attributes>
+</entity>
+
+</entity-mappings>

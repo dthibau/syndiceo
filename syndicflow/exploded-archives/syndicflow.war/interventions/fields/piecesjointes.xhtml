@@ -1,0 +1,66 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:c="http://java.sun.com/jstl/core"
+                 xmlns:rich="http://richfaces.ajax4jsf.org/rich"
+                 xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                 xmlns:a="https://ajax4jsf.dev.java.net/ajax"
+                 xmlns:s="http://jboss.com/products/seam/taglib">
+		
+	<a:region id="regionListeAttachements">						
+	<a:outputPanel id="fileUploadMainPanel" styleClass="telechargements" layout="block">
+	
+   		<div id="fileUploadManager"><rich:fileUpload id="fileUploadManager" allowFlash="false"  
+         	fileUploadListener="#{manager.fileUploadListener}" listHeight="39px" acceptedTypes="#{acceptedTypes!=null ? acceptedTypes : ''}" 
+         	immediate="true"    	
+         	onsizerejected="alert('#{messages['upload.sizeError']}')"  
+			addControlLabel="#{messages['upload.add']}"
+			cancelEntryControlLabel="#{messages['upload.cancel']}"
+			clearAllControlLabel="#{messages['upload.clearAll']}"
+			clearControlLabel="#{messages['upload.clearControl']}"
+			doneLabel="#{messages['upload.done']}"
+			progressLabel="#{messages['upload.progress']}"
+			sizeErrorLabel="#{messages['upload.sizeError']}"
+			stopControlLabel="#{messages['upload.stopControl']}"
+			stopEntryControlLabel="#{messages['upload.stopEntryControl']}"
+			transferErrorLabel="#{messages['upload.transferError']}"
+			uploadControlLabel="#{messages['upload.uploadControl']}">
+				<a:support event="onuploadcomplete" reRender="fileUploadMainPanel,#{reRender}" oncomplete="#{onCompleteEvent!=null ? onCompleteEvent : '' }" eventsQueue="#{conversation.id}"/>
+				<f:facet name="label">
+	                <h:outputText value="#{messages['upload.uploadInfos']}" />							
+		        </f:facet>		        
+   		</rich:fileUpload>
+   		<a:status for="regionListeAttachements" rendered="#{!disableStatus}">
+			<f:facet name="start">
+				<div id="loading" class="chargement"/>
+			</f:facet>
+		</a:status>	
+   		</div>
+   		<a:outputPanel id="fileUploadDocListPanel" rendered="#{not empty demande.piecesJointes}" layout="block">
+   			
+    		<div class="suziUI-DocListHeader">	
+    			<span class="texte-titre-liste">#{messages['demande.field.piecesJointes']}</span> <small>(#{demande.piecesJointes.size})</small> &#160; <a:commandLink styleClass="retirer-tout" action="#{manager.removeAllDocuments()}" reRender="fileUploadMainPanel,status" rendered="#{docsList.size > 1}" title="#{messages['upload.deleteAll']}">#{messages['upload.deleteAll']}</a:commandLink>
+    		</div>					
+   				<a:repeat id="fileUploadDocList" value="#{demande.piecesJointes}" var="doc">
+   					<ul class="liste-documents-attaches">
+   					<li class="elm-document-attache">
+   					<span><h:commandLink styleClass="lien-document" immediate="true" target="_popup" value="#{doc.fileName}" action="#{documentHelper.download(doc)}"/></span>
+					
+					<span>
+					<a:commandLink styleClass="retirer-document-attache" id="delNrml" title="#{messages['upload.deleteOne']}" 
+					ajaxSingle="true" immediate="true" reRender="fileUploadMainPanel,statusPanel" 
+							action="#{manager.removeDocument(doc)}">
+								#{messages['action.supprimer']} 
+						</a:commandLink>
+					</span>
+					</li>
+					</ul>
+   				</a:repeat>
+
+
+    	</a:outputPanel>
+ 	</a:outputPanel>
+ 	</a:region>
+	
+</ui:composition>

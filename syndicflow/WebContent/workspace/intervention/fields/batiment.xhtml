@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+
+<a4j:outputPanel id="batimentDecoration">
+	<s:decorate template="../../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText value="#{messages['intervention.field.batiment']}"/>
+			</ui:define>
+
+			<h:inputText value="#{intervention.batiment}" styleClass="large" rendered="#{intervention.isNew()}"/>
+			
+			<h:inputText value="#{intervention.batiment}" styleClass="large" rendered="#{!intervention.isNew()}">
+						<a4j:ajax  event="change" queueId="#{conversation.id}" execute="@this" 
+					listener="#{interventionManager.updateDemande(messages['intervention.field.batiment'])}"
+					render="batimentDecoration,messages" >
+					</a4j:ajax>
+			</h:inputText>
+	</s:decorate>
+</a4j:outputPanel>
+
+</ui:composition>

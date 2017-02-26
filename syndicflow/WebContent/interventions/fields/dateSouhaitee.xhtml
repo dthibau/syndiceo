@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+		<s:decorate id="dateSouhaiteeDecoration_#{suffix}" styleClass="champ obligatoire" template="../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText value="#{messages['intervention.field.dateSouhaitee']}"/>
+			</ui:define>
+			<rich:calendar value="#{intervention.dateSouhaitee}" id="dateSouhaiteeInput" required="true"
+			 	popup="true" 
+			 	datePattern="#{messages['syndicflow.dateformat']}" 
+			 	monthLabels="#{messages['syndicflow.calendar.monthLabels']}"
+			 	monthLabelsShort="#{messages['syndicflow.calendar.monthLabelsShort']}"
+			 	weekDayLabels="#{messages['syndicflow.calendar.weekDayLabels']}"
+			 	weekDayLabelsShort="#{messages['syndicflow.calendar.weekDayLabelsShort']}"
+			 	todayControlMode="hidden"
+			 	bypassUpdates="true" enableManualInput="false">
+			 </rich:calendar>
+		</s:decorate>
+		
+		
+
+</ui:composition>

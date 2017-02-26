@@ -1,0 +1,19 @@
+.title {
+    color: #CC0000;
+    font-size: 16px;
+    font-weight: bold;
+    width: 600px;
+}
+
+.titleColumn{
+ width: 150px;
+}
+
+
+
+.rf-tb-sep {
+	padding :0px !important;
+}
+.rf-tb-itm.intervention {
+	padding-right:192px;
+}

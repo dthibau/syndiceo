@@ -1,0 +1,64 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.org/schema/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich">
+
+
+        <h1>Syndicflow login page</h1>
+        <rich:panel>
+            <h:panelGrid columns="2">
+                <h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/>
+                <s:div styleClass="info">
+                Log as 
+                    <ul class="bullets">
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=admin&amp;email=dthibau@wmmod.com&amp;nom=David%20THIBAU&amp;telephone=06%2048%2070%2062%2097&amp;affectations=r_admin">Administrateur SyndicEo</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=gestionnaire&amp;email=dthibau@wmmod.com&amp;nom=Mr Gestionnaire 3&amp;telephone=06 48 70 62 97&amp;affectations=r_gestionnaire!1!15 rue Jules Verne!gestionnaire;r_gestionnaire!2!24 rue Perronet!gestionnaire"> Gestionnaire" SyndicEo</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=gestionnaire2&amp;email=dthibau@wmmod.com&amp;nom=Mr Gestionnaire 2&amp;telephone=06 48 70 62 97&amp;affectations=r_gestionnaire!3!56 bvd Ménilmontant!gestionnaire2"> Gestionnaire" SyndicEo n° 2</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=conseil&amp;email=dthibau@wmmod.com&amp;nom=Mr Conseil&amp;telephone=06 48 70 62 97&amp;affectations=r_conseil!1!15 rue Jules Verne!gestionnaire;r_conseil!2!24 rue Perronet!gestionnaire">Conseil Syndical</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=conseil2&amp;email=dthibau@wmmod.com&amp;nom=Mr Conseil2&amp;telephone=06 48 70 62 97&amp;affectations=r_conseil!1!15 rue Jules Verne!gestionnaire;r_copro!2!24 rue Perronet!gestionnaire">Conseil Syndical 2</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=copro&amp;email=dthibau@wmmod.com&amp;nom=Mr Copro&amp;telephone=06 48 70 62 97&amp;affectations=r_copro!1!15 rue Jules Verne!gestionnaire">Co-propriétaire</a></li>
+                    </ul>
+                </s:div>
+            </h:panelGrid>
+        </rich:panel>
+        
+         <rich:panel>
+            <h:panelGrid columns="2">
+                <h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/>
+                <s:div styleClass="info">
+                Log as 
+                    <ul class="bullets">
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=000134&amp;email=sandrine.fraissignes@gmail.com&amp;nom=Madame%20BLANC&amp;telephone=&amp;affectations=r_conseil!9991!1 rue test!000008;r_conseil!9992!2 rue Test!000117;">BLANC</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=000135&amp;email=carole.peroux@syndiceo.com&amp;nom=Madame%20BLANC BLEU&amp;telephone=06 00 00 23 40&amp;affectations=r_copro!9991!1 rue test!000008;"> BLANC BLEU</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=000132&amp;email=&amp;nom=M. ou Mme%20JAUNE&amp;telephone=06 62 55 61 00&amp;affectations=r_conseil!9991!1 rue test!000008;"> JAUNE</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=000133&amp;email=&amp;nom=Mme ou Melle%20ROUGE&amp;telephone=06 667 66 666&amp;affectations=r_copro!9991!1 rue test!000008;r_conseil!9992!2 rue Test!000117;">ROUGE</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=000139&amp;email=&amp;nom=Maitre%20CINQ&amp;telephone=&amp;affectations=r_copro!9992!2 rue Test!000117;">CINQ</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=000137&amp;email=&amp;nom=M. ou Mme%20DEUX&amp;telephone=&amp;affectations=r_copro!9992!2 rue Test!000117;">DEUX</a></li>
+                        <li><a href="#{request.contextPath}/enter.seam?accountId=000138&amp;email=sfraissignes@sfr.fr&amp;nom=Madame%20TROIS&amp;telephone=&amp;affectations=r_conseil!9992!2 rue Test!000117;">TROIS</a></li>
+                    </ul>
+                </s:div>
+            </h:panelGrid>
+        </rich:panel>
+        
+        
+         <rich:panel>
+            <h:panelGrid columns="2">
+                <h:graphicImage value="/img/seamlogo.png" alt="Seam logo"/>
+                <s:div styleClass="info">
+               Get Token
+                    <ul class="bullets">
+                        <li><a href="#{request.contextPath}/login.seam?accountId=admin&amp;email=dthibau@wmmod.com&amp;nom=David THIBAU&amp;telephone=06 48 70 62 97">Administrateur SyndicEo</a></li>
+                        <li><a href="#{request.contextPath}/login.seam?accountId=gestionnaire&amp;email=dthibau@wmmod.com&amp;nom=Mr Gestionnaire 3&amp;telephone=06 48 70 62 97&amp;affectations=r_gestionnaire!1!15 rue Jules Verne;r_gestionnaire!2!24 rue Perronet"> Gestionnaire" SyndicEo</a></li>
+                        <li><a href="#{request.contextPath}/login.seam?accountId=gestionnaire2&amp;email=dthibau@wmmod.com&amp;nom=Mr Gestionnaire 2&amp;telephone=06 48 70 62 97&amp;affectations=r_gestionnaire!3!56 bvd Ménilmontant"> Gestionnaire" SyndicEo n° 2</a></li>
+                        <li><a href="#{request.contextPath}/login.seam?accountId=conseil&amp;email=dthibau@wmmod.com&amp;nom=Mr Conseil&amp;telephone=06 48 70 62 97&amp;affectations=r_conseil!1!15 rue Jules Verne;r_copro!2!24 rue Perronet">Conseil Syndical</a></li>
+                        <li><a href="#{request.contextPath}/login.seam?accountId=copro&amp;email=dthibau@wmmod.com&amp;nom=Mr Copro&amp;telephone=06 48 70 62 97&amp;affectations=r_copro!1!15 rue Jules Verne">Co-propriétaire</a></li>
+                    </ul>
+                </s:div>
+            </h:panelGrid>
+        </rich:panel>
+
+</ui:composition>

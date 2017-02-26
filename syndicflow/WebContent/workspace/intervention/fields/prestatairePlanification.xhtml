@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+	<s:decorate id="prestatairePlanification" styleClass="champ obligatoire" template="../../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText value="#{messages['intervention.field.planification.prestataire']}"/>
+			</ui:define>
+
+			<h:inputTextarea value="#{planification.prestataire}" styleClass="large" rendered="#{!edit}" />
+			
+			<h:inputTextarea value="#{planification.prestataire}" styleClass="large" rendered="#{edit}">
+			<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" 
+					listener="#{interventionManager.updateDemande(messages['intervention.field.planification.prestataire'])}"
+					render="prestatairePlanification,messages" >
+					</a4j:ajax>
+			</h:inputTextarea>
+			
+	</s:decorate>
+</ui:composition>

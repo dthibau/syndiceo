@@ -1,0 +1,100 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<div class="section arretes">
+		<h:form>
+			<a4j:region id="listRegion">
+				<rich:dataTable value="#{autreDemandesManager.demandes}" var="dto"
+				rowClass="#{dto.lu ? '' : 'unread'}" 
+					id="demandesList" >
+					<ui:include src="../common/column/numero.xhtml" >
+						<ui:param name="demande" value="#{dto.demande}"/>
+					</ui:include>
+					<ui:include src="../common/column/titreAutre.xhtml" >
+						<ui:param name="demande" value="#{dto.demande}"/>
+					</ui:include>
+					<ui:include src="../common/column/createdDate.xhtml" >
+						<ui:param name="demande" value="#{dto.demande}"/>
+					</ui:include>
+					<ui:include src="../common/column/critere.xhtml" >
+						<ui:param name="autreDemande" value="#{dto.autreDemande}"/>
+					</ui:include>
+					<ui:include src="../common/column/demandeur.xhtml" >
+						<ui:param name="demande" value="#{dto.demande}"/>
+					</ui:include>
+					<ui:include src="../common/column/immeuble.xhtml" >
+						<ui:param name="demande" value="#{dto.demande}"/>
+					</ui:include>
+					<ui:include src="../common/column/status.xhtml" >
+						<ui:param name="demande" value="#{dto.demande}"/>
+					</ui:include>
+					
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value=" " />
+						</f:facet>
+						<a4j:outputPanel layout="block" rendered="#{dto.hasTask()}">
+							<ul class="liste-simple-menu">
+
+
+									<a4j:outputPanel rendered="#{taskConf[dto.currentTask.code].uniqueButtonConf != null}">
+										<li class="bt-workflow"><s:link
+												action="#{autreDemandeManager.select()}"
+												value="#{messages[taskConf[dto.currentTask.code].buttonConfs[0].listLabelCode]}">
+												<f:param name="dId" value="#{dto.id}" />
+												<s:conversationPropagation type="none" />
+											</s:link></li>
+									</a4j:outputPanel>
+
+									<a4j:outputPanel rendered="#{taskConf[dto.currentTask.code].uniqueButtonConf == null and taskConf[dto.currentTask.code].hasButtonConf() }">
+										<li class="bt-workflow"><s:link
+												action="#{autreDemandeManager.select()}"
+												value="#{messages['action.traiter']}">
+												<f:param name="dId" value="#{dto.id}" />
+												<s:conversationPropagation type="none" />
+											</s:link></li>
+									</a4j:outputPanel>
+									
+								<a4j:repeat value="#{dto.directTasks}" var="directTask">
+									<li class="bt-workflow"><a4j:commandLink
+											action="#{autreDemandeManager.doStuff(dto,directTask)}"
+											value="#{messages[directTask.code]}"
+											render="dialogForm,dialogContentPanel,dialogButtonPanel,dialogInfoPanel,dialogTitlePanel"
+											oncomplete="#{rich:component('taskDialogPanel')}.show()"
+											eventsQueue="#{conversation.id}" >
+											<f:param name="cid" value="#{conversation.id}"/>
+											</a4j:commandLink></li>
+								</a4j:repeat>
+
+
+							</ul>
+						</a4j:outputPanel>
+
+
+					</rich:column>
+				</rich:dataTable>
+			</a4j:region>
+			<a4j:outputPanel rendered="#{empty autreDemandesManager.demandes}"
+				layout="block" styleClass="no_arrete">
+				<h:outputText value="#{messages['noIntervention']}" />
+			</a4j:outputPanel>
+		</h:form>
+
+	</div>
+	<a4j:status for="listRegion">
+		<f:facet name="start">
+			<div id="loading" class="wait_ajax">
+				<div class="cartouche_ajax">
+					<div class="ajax_loader"></div>
+				</div>
+			</div>
+		</f:facet>
+	</a4j:status>
+</ui:composition>

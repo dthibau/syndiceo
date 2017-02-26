@@ -1,0 +1,150 @@
+package com.syndiceo.manager;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.jboss.seam.ScopeType;
+import org.jboss.seam.annotations.Begin;
+import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.Name;
+import org.jboss.seam.annotations.Observer;
+import org.jboss.seam.annotations.Scope;
+
+import com.syndiceo.dto.DemandeDTO;
+import com.syndiceo.model.Account;
+import com.syndiceo.model.Immeuble;
+import com.syndiceo.service.TaskService;
+import com.syndiceo.util.Util;
+
+@Name("autreDemandesManager")
+@Scope(ScopeType.CONVERSATION)
+public class AutreDemandesManager implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -355044670516614813L;
+
+
+	@In(create=true)
+	TaskService taskService;
+	
+	@In
+	Account loggedUser;
+	
+	
+	@In(scope=ScopeType.APPLICATION)
+	private Date lastAction;
+	
+	private String pattern;
+	private String stateCode;
+	private Immeuble immeuble;
+	private boolean filterChanged=true;
+	
+	private Date lastRequest;
+	
+	List<DemandeDTO> demandes;
+	List<DemandeDTO> filteredDemandes;
+	
+	@Begin(join=true)
+	public List<DemandeDTO> getDemandes() {
+		if ( demandes == null || lastAction.after(lastRequest) ) {
+	
+
+				if ( loggedUser.is("r_admin") ) {
+					demandes = taskService.getAllAutreDemandes(loggedUser);
+				} else if ( loggedUser.is("r_gestionnaire") ) {
+					demandes = taskService.getAllMineAutreDemandes(loggedUser);
+				} else { // Co-pro, conseil (par immeubles)
+					demandes = taskService.getAllMineAutreDemandes(loggedUser);
+				}
+
+			lastRequest = new Date();
+			filterChanged = true;
+		}
+		if ( filterChanged  ) {
+			filteredDemandes = _filter();
+			filterChanged=false;
+		}
+		return filteredDemandes;
+	}
+	
+	@Observer("demandesUpdated")
+	public void refresh() {
+		demandes = null;
+	}
+	
+	private List<DemandeDTO> _filter() {
+		List<DemandeDTO> ret = new ArrayList<DemandeDTO>();
+		if ( pattern != null && pattern.length() > 0 ) {
+			for ( DemandeDTO d : demandes ) {
+				if ( d.containsPattern(pattern,loggedUser.is("r_gestionnaire") || loggedUser.is("r_admin")) ) {
+					ret.add(d);
+				}
+			}
+		} else {
+			ret = demandes;
+		}
+		if ( immeuble != null ) {
+			List<DemandeDTO> filterImmeubles = new ArrayList<DemandeDTO>();
+			for ( DemandeDTO d : ret ) {
+				if ( d.getImmeuble().equals(immeuble) ) {
+					filterImmeubles.add(d);
+				}
+			}
+			ret= filterImmeubles;
+		}
+		if ( stateCode != null && stateCode.length() > 0 ) {
+			List<DemandeDTO> filterState = new ArrayList<DemandeDTO>();
+			for ( DemandeDTO d : ret ) {
+				if ( d.getStatusCode().equals(stateCode) ) {
+					filterState.add(d);
+				}
+			}
+			ret= filterState;
+		}
+		return ret;
+	}
+
+	public String getPattern() {
+		return pattern;
+	}
+
+	public void setPattern(String pattern) {
+		if ( !Util.isEqual(pattern,this.pattern) ) {
+			this.pattern = pattern;
+			filterChanged=true;
+		}
+	}
+
+
+
+	public String getStateCode() {
+		return stateCode;
+	}
+
+	public void setStateCode(String stateCode) {
+		if ( !Util.isEqual(stateCode,this.stateCode) ) {
+			this.stateCode = stateCode;
+			filterChanged=true;
+		}
+	}
+
+	public Immeuble getImmeuble() {
+		return immeuble;
+	}
+
+	public void setImmeuble(Immeuble immeuble) {
+		if ( !Util.isEqual(immeuble,this.immeuble) ) {
+			this.immeuble = immeuble;
+			filterChanged=true;
+		}
+		
+	}
+
+
+	
+	
+}

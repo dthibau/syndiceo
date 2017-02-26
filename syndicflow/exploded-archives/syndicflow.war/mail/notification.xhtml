@@ -1,0 +1,120 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:m="http://jboss.org/schema/seam/mail"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	template="mailLayout.xhtml">
+
+	<ui:define name="MailSubject">
+		<h:outputText value=" #{demande.titre}" />
+	</ui:define>
+
+	<ui:define name="MailAttachments">
+		<a:repeat value="#{event.fichiers}" var="doc">
+			<m:attachment value="#{doc.data}" contentType="#{doc.contentType}"
+				fileName="#{doc.fileName}" />
+		</a:repeat>
+	</ui:define>
+	<ui:define name="MailStyle">
+		<ui:include src="/css/mail-css.xhtml" />
+	</ui:define>
+
+	<ui:define name="MailTitle">
+		<span class="headLogoSujet"><h:outputText
+				value=" #{demande.titre}" />&#160;/&#160;<h:outputText
+				value="#{messages[event.taskCode]}" /></span>
+	</ui:define>
+
+	<ui:define name="MailContent">
+		<a:outputPanel
+			rendered="#{event.taskCode.equals('DEPOT') or event.taskCode.equals('AUTRE_DEPOT')}">
+			<h:outputFormat escape="false" value="#{messages[event.mailCode]}">
+				<f:param value="#{demande.numero}" />
+				<f:param value="#{demande.titre}" />
+				<f:param value="#{dateFormat.format(demande.createdDate)}"/>
+			</h:outputFormat>
+		</a:outputPanel>
+		<a:outputPanel
+			rendered="#{event.taskCode.equals('action.acceptPetit') or event.taskCode.equals('action.refuseIntervention') 
+			or event.taskCode.equals('action.acceptIntervention') or event.taskCode.equals('action.acceptGros') }">
+			<h:outputFormat escape="false" value="#{event.comment}"/>
+			<a:outputPanel rendered="#{event.taskCode.equals('action.refuseIntervention')}">
+			<br/><u>#{messages['intervention.field.planification.outcome']}</u> <br/><h:outputText value="#{lastPlanification.outcome}"/>
+			</a:outputPanel>
+		</a:outputPanel>
+		<a:outputPanel
+			rendered="#{event.taskCode.equals('action.msg') }">
+			<h:outputFormat escape="false" value="#{messages[event.mailCode]}">
+				<f:param value="#{event.actor.getNomComplet()}" />
+				<f:param value="#{demande.numero}" />
+				<f:param value="#{demande.titre}" />
+				<f:param value="#{dateFormat.format(demande.createdDate)}"/>
+			</h:outputFormat><br/><br/>
+			<u><h:outputText value="#{messages['mail.accompagnement']}" /></u><br />
+			<i><h:outputFormat escape="false" value="#{event.comment}"/></i>
+		</a:outputPanel>
+
+		<a:outputPanel rendered="#{event.taskCode.equals('action.confirmCancel') or event.taskCode.equals('action.modifier') or event.taskCode.equals('action.inscrit') or event.taskCode.equals('action.refuse') or event.taskCode.equals('action.repondre')}">
+			<h:outputFormat escape="false" value="#{messages[event.mailCode]}">
+				<f:param value="#{event.actor.getNomComplet()}" />
+				<f:param value="#{demande.numero}" />
+				<f:param value="#{demande.titre}" />
+				<f:param value="#{dateFormat.format(demande.createdDate)}"/>
+				<f:param value="#{intervention != null ? 'd\'intervention' : 'd\'information'}"/>
+			</h:outputFormat><br/><br/>
+			<u><h:outputText value="#{messages['mail.accompagnement']}" /></u><br />
+			<i><h:outputFormat escape="false" value="#{event.comment}"/></i>
+		</a:outputPanel>
+		 
+		<a:outputPanel rendered="#{event.taskCode.equals('action.planify')}">
+			<a:outputPanel rendered="#{intervention.planifications.size() == 1}">
+			<h:outputFormat escape="false" value="#{messages['mail.planification']}" >
+				<f:param value="#{demande.numero}" />
+				<f:param value="#{demande.titre}" />
+				<f:param value="#{dateFormat.format(demande.createdDate)}"/>
+			</h:outputFormat>
+			</a:outputPanel>
+			<a:outputPanel rendered="#{intervention.planifications.size() &gt; 1}">
+			<h:outputFormat escape="false" value="#{messages['mail.replanification']}" >
+				<f:param value="#{demande.numero}" />
+				<f:param value="#{demande.titre}" />
+				<f:param value="#{dateFormat.format(demande.createdDate)}"/>
+			</h:outputFormat>
+			</a:outputPanel>
+			<br />
+			<i>#{messages['intervention.field.planification.date']}</i> : <h:outputText value="#{lastPlanification.date}" >
+			<s:convertDateTime pattern="#{messages['syndicflow.dateformat']}"/>
+			</h:outputText>
+			<br />
+			<i>#{messages['intervention.field.planification.horaire']}</i> : <h:outputText value="#{lastPlanification.horaire.nom}" /><br />
+			<i>#{messages['intervention.field.planification.prestataire']}</i> : <h:outputText value="#{lastPlanification.prestataire}" />
+		</a:outputPanel>
+
+		<br />
+		<br />
+		<h:outputFormat escape="false"
+			value="#{messages['mail.cordialement']}">
+			<f:param value="#{event.actor.getNomComplet()}" />
+		</h:outputFormat>
+		<br />
+		<br />
+
+		<a:outputPanel rendered="#{!pourInfo}">
+			<ui:include src="_linkIntervention.xhtml" />
+			<ui:include src="_connect.xhtml" />
+		</a:outputPanel>
+	</ui:define>
+
+	<ui:define name="MailContentAlternative">
+		<h:outputFormat value="#{messages[event.mailCode]}">
+			<f:param value="#{event.actor.getNomComplet()}" />
+		</h:outputFormat>
+
+
+		<h:outputText value="#{event.comment}" escape="false" />
+
+	</ui:define>
+
+</ui:composition>

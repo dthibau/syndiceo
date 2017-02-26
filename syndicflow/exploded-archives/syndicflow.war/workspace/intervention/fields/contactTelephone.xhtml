@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+
+<a4j:outputPanel id="contactTelephoneDecoration">
+	<s:decorate template="../../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText value="#{messages['intervention.field.contactTelephone']}"/>
+			</ui:define>
+
+			<h:outputText value="#{intervention.demandeur.telephone}"
+				rendered="#{intervention.contactDemandeur and not empty intervention.demandeur.telephone}" />
+				
+			<h:inputText value="#{intervention.contactTelephone}" styleClass="large" required="true"
+			rendered="#{(!intervention.contactDemandeur or empty intervention.demandeur.telephone) and intervention.isNew()}">
+				<f:validateLength minimum="10"></f:validateLength>
+			</h:inputText>
+			
+			<h:inputText value="#{intervention.contactTelephone}" styleClass="large" required="true"
+				rendered="#{(!intervention.contactDemandeur or empty intervention.demandeur.telephone) and !intervention.isNew()}">
+				<f:validateLength minimum="10"></f:validateLength>
+				<a4j:ajax event="change" queueId="#{conversation.id}"
+					execute="@this"
+					listener="#{interventionManager.updateDemande(messages['intervention.field.contactTelephone'])}"
+					render="contactTelephoneDecoration,messages" />
+			</h:inputText>
+			
+			
+
+	</s:decorate>
+</a4j:outputPanel>
+</ui:composition>

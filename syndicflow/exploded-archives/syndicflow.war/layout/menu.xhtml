@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	<h:form>
+		<rich:toolbar>
+
+			<rich:dropDownMenu >
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="#{messages['menu.interventions']}" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem label="#{messages['wflow.task.start']}"
+					action="#{createInterventionManager.init}"
+					rendered="#{!loggedUser.isOnly('r_copro')}" />
+				<rich:menuSeparator id="menuSeparator11"
+					rendered="#{!loggedUser.isOnly('r_copro')}" />
+				<rich:menuItem label="#{messages['menu.interventions.encours']}"
+					action="/workspace/interventions.xhtml">
+				</rich:menuItem>
+				<rich:menuItem label="#{messages['menu.interventions.grosTravaux']}"
+					action="/workspace/grosTravaux.xhtml" />
+				<rich:menuItem label="#{messages['menu.interventions.archive']}"
+					action="/workspace/archives.xhtml" />
+			</rich:dropDownMenu>
+
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>
+						<h:outputText value="#{messages['menu.autreDemandes']}" />
+					</h:panelGroup>
+				</f:facet>
+				<rich:menuItem label="#{messages['wflow.task.startAutreDemande']}"
+					action="#{createAutreDemandeManager.init}"/>
+				<rich:menuSeparator id="menuSeparator21"
+					rendered="#{loggedUser.is('r_copro') or loggedUser.is('r_conseil')}" />
+				<rich:menuItem label="#{messages['menu.autreDemandes.encours']}"
+					action="/workspace/autreDemandes.xhtml">
+				</rich:menuItem>
+				<rich:menuItem label="#{messages['menu.autreDemandes.archive']}"
+					action="/workspace/autreDemandesArchives.xhtml" />
+			</rich:dropDownMenu>
+		</rich:toolbar>
+	</h:form>
+
+
+</ui:composition>

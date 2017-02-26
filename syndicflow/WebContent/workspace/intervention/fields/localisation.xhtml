@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+	<a:outputPanel id="localisationDecoration">
+		<s:decorate styleClass="champ obligatoire"
+			template="../../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText value="#{messages['intervention.field.localisation']}" />
+			</ui:define>
+			<h:selectOneMenu value="#{intervention.localisation}" 
+				rendered="#{intervention.isNew()}">
+				<s:selectItems value="#{localisations}" var="localisation"
+					label="#{localisation.nom}"
+					noSelectionLabel="#{messages['noSelection.localisation']}" />
+				<s:convertEntity />
+				<s:conversationId />
+
+			</h:selectOneMenu>
+
+			<h:selectOneMenu value="#{intervention.localisation}" 
+				rendered="#{!intervention.isNew()}">
+				<a:ajax event="change" queueId="#{conversation.id}" execute="@this"
+					listener="#{interventionManager.updateDemande(messages['intervention.field.localisation'])}"
+					render="localisationDecoration,messages">
+				</a:ajax>
+				<s:selectItems value="#{localisations}" var="localisation"
+					label="#{localisation.nom}"
+					noSelectionLabel="#{messages['noSelection.localisation']}" />
+				<s:convertEntity />
+				<s:conversationId />
+
+			</h:selectOneMenu>
+
+		</s:decorate>
+
+	</a:outputPanel>
+</ui:composition>

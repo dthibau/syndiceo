@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+<a4j:outputPanel id="descriptionDecoration">
+	<s:decorate styleClass="champ obligatoire" template="../../../layout/edit.xhtml">
+	<ui:param name="aide" value="#{messages['aide.demande.description']}"/>
+			<ui:define name="label">
+				<h:outputText value="#{messages['demande.field.description']}"/>
+			</ui:define>
+
+			<h:inputTextarea value="#{autreDemande.description}" styleClass="large" rendered="#{autreDemande.isNew()}">
+
+			</h:inputTextarea>
+			
+			<h:inputTextarea value="#{autreDemande.description}" styleClass="large" rendered="#{!autreDemande.isNew()}">
+						<a4j:ajax  event="change" queueId="#{conversation.id}" execute="@this" 
+					listener="#{autreDemandeManager.updateDemande(messages['autreDemande.field.description'])}"
+					render="descriptionDecoration,messages" >
+					</a4j:ajax>
+			</h:inputTextarea>
+			
+	</s:decorate>
+	</a4j:outputPanel>
+</ui:composition>

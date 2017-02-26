@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+<a4j:outputPanel id="contactNotDemandeurDecoration">
+		<s:decorate template="../../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText value="#{messages['intervention.field.contactDemandeur']}" />
+			</ui:define>
+
+			<h:selectBooleanCheckbox value="#{intervention.contactDemandeur}" >
+				<a4j:ajax event="change" queueId="#{conversation.id}"
+					execute="@this"
+					render="contactFieldsPanel" />
+			</h:selectBooleanCheckbox>
+		</s:decorate>
+	</a4j:outputPanel>
+	
+	<a4j:outputPanel id="contactFieldsPanel">
+					<ui:include src="../fields/contactNom.xhtml" />
+					<ui:include src="../fields/contactEmail.xhtml" />
+					<ui:include src="../fields/contactTelephone.xhtml" />
+	</a4j:outputPanel>
+</ui:composition>

@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+<a:outputPanel layout="block" id="topPanel" styleClass="top">
+<a:region id="topRegion">
+<ui:insert name="top"/>
+</a:region>
+<a:status for="topRegion">
+	<f:facet name="start">
+		<div id="loading" class="wait_ajax"><div class="cartouche_ajax"><div class="ajax_loader"></div></div></div>
+	</f:facet>
+ </a:status>
+
+</a:outputPanel>
+<a:outputPanel layout="block" id="filtrePanel" styleClass="filtre">
+<ui:insert name="filtre"/>
+</a:outputPanel>
+
+<a:outputPanel layout="block" id="listPanel" styleClass="nodefined">
+<ui:insert name="liste"/>
+</a:outputPanel>
+<div class="bottom">
+<ui:insert name="bottom"/>
+</div>
+</ui:composition>

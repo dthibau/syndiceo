@@ -1,0 +1,48 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<rich:column sortBy="#{demande.titre}" width="100px"
+		sortOrder="#{orders.get('titre')}">
+		<f:facet name="header">
+			<a4j:commandLink value="#{messages['demande.colonne.titre']}"
+				render="demandesList" action="#{demandeSorter.sortBy('titre')}">
+				<s:conversationId />
+			</a4j:commandLink>
+			<h:graphicImage value="/img/sort_down.png" width="10"
+				rendered="#{orders.get('titre').equals(ASCENDING)}" />
+			<h:graphicImage value="/img/sort_up.png" width="10"
+				rendered="#{orders.get('titre').equals(DESCENDING)}" />
+
+		</f:facet>
+
+		<s:link action="#{interventionManager.select}"
+			value="#{demande.titre}">
+			<f:param name="dId" value="#{demande.id}" />
+			<s:conversationPropagation type="none" />
+		</s:link>
+
+		<rich:tooltip>
+						#{messages['demande.info.gestionnaire']} : <h:outputText
+				value="#{demande.immeuble.gestionnaire.nomComplet}" />
+			<br />
+						#{messages['intervention.field.sousSpecialite']} : <h:outputText
+				value="#{demande.sousSpecialite.nom}" />
+			<br />
+					#{messages['intervention.field.dateSouhaitee']} :
+					<h:outputText value="#{demande.dateSouhaitee}">
+				<s:convertDateTime pattern="#{messages['syndicflow.dateformat']}"></s:convertDateTime>
+			</h:outputText>
+		</rich:tooltip>
+		<img width="100" height="1" src="#{request.contextPath}/img/pix.gif" />
+	</rich:column>
+
+
+</ui:composition>

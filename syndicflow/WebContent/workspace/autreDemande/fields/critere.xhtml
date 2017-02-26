@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+	<s:decorate id="critereDecoration" styleClass="champ obligatoire"
+		template="../../../layout/edit.xhtml">
+		<ui:define name="label">
+			<h:outputText value="#{messages['autreDemande.field.critere']}" />
+		</ui:define>
+		<h:selectOneMenu value="#{autreDemande.critere}" required="true" rendered="#{autreDemande.isNew()}">
+			<a:ajax event="change" render="sousCriterePanel">
+
+			</a:ajax>
+			<s:selectItems value="#{criteres}" var="critere"
+				label="#{critere.nom}"
+				noSelectionLabel="#{messages['noSelection.critere']}" />
+			<s:convertEntity />
+			<s:conversationId />
+
+		</h:selectOneMenu>
+		<h:selectOneMenu value="#{autreDemande.critere}" required="true" rendered="#{!autreDemande.isNew()}">
+			<a:ajax event="change"  queueId="#{conversation.id}" execute="@this"
+					listener="#{autreDemandeManager.updateDemande(messages['autreDemande.field.critere'])}" render="sousCriterePanel,messages">
+
+			</a:ajax>
+			<s:selectItems value="#{criteres}" var="critere"
+				label="#{critere.nom}"
+				noSelectionLabel="#{messages['noSelection.critere']}" />
+			<s:convertEntity />
+			<s:conversationId />
+
+		</h:selectOneMenu>
+
+	</s:decorate>
+
+	<a:outputPanel id="sousCriterePanel">
+		<a:outputPanel rendered="#{not empty manager.sousCriteres}">
+			<s:decorate id="sousCritereDecoration"
+				styleClass="champ" template="../../../layout/edit.xhtml">
+				<ui:define name="label">
+					<h:outputText
+						value="#{messages['autreDemande.field.sousCritere']}" />
+				</ui:define>
+				<h:selectOneMenu value="#{autreDemande.sousCritere}" rendered="#{autreDemande.isNew()}">
+					<s:selectItems value="#{manager.sousCriteres}"
+						var="sousCritere" label="#{sousCritere.nom}"
+						noSelectionLabel="#{messages['noSelection.sousCritere']}" />
+					<s:convertEntity />
+					<s:conversationId />
+				</h:selectOneMenu>
+				<h:selectOneMenu id="notNew" value="#{autreDemande.sousCritere}" rendered="#{!autreDemande.isNew()}">
+				<a:ajax event="change"  queueId="#{conversation.id}" execute="@this"
+					listener="#{autreDemandeManager.updateDemande(messages['autreDemande.field.sousCritere'])}" render="sousCritereDecoration,messages">
+				</a:ajax>
+					<s:selectItems value="#{manager.sousCriteres}"
+						var="sousCritere" label="#{sousCritere.nom}"
+						noSelectionLabel="#{messages['noSelection.sousCritere']}" />
+					<s:convertEntity />
+					<s:conversationId />
+				</h:selectOneMenu>
+
+
+			</s:decorate>
+		</a:outputPanel>
+	</a:outputPanel>
+</ui:composition>

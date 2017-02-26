@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+	<a:outputPanel id="pourInfoDecoration">
+		<s:decorate template="../../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText value="#{messages['intervention.field.pourInfo']}" />
+			</ui:define>
+
+<br/>
+			<h:inputText value="#{intervention.pourInfo1}" 
+				rendered="#{intervention.isNew()}" >	
+			</h:inputText>
+
+			<h:inputText value="#{intervention.pourInfo1}" styleClass="large" 
+				rendered="#{!intervention.isNew()}">
+				<a:ajax event="change" queueId="#{conversation.id}" execute="@this"
+					listener="#{interventionManager.updateDemande(messages['intervention.field.pourInfo'])}"
+					render="pourInfoDecoration,messages" />
+			</h:inputText>
+			<br/>
+			<h:inputText value="#{intervention.pourInfo2}" 
+				rendered="#{intervention.isNew()}" >	
+			</h:inputText>
+
+			<h:inputText value="#{intervention.pourInfo2}" styleClass="large" 
+				rendered="#{!intervention.isNew()}">
+				<a:ajax event="change" queueId="#{conversation.id}" execute="@this"
+					listener="#{interventionManager.updateDemande(messages['intervention.field.pourInfo'])}"
+					render="pourInfoDecoration,messages" />
+			</h:inputText>
+			<br/>
+			<h:inputText value="#{intervention.pourInfo3}" 
+				rendered="#{intervention.isNew()}" >	
+			</h:inputText>
+
+			<h:inputText value="#{intervention.pourInfo3}" styleClass="large" 
+				rendered="#{!intervention.isNew()}">
+				<a:ajax event="change" queueId="#{conversation.id}" execute="@this"
+					listener="#{interventionManager.updateDemande(messages['intervention.field.pourInfo'])}"
+					render="pourInfoDecoration,messages" />
+			</h:inputText><br/>
+		</s:decorate>
+	</a:outputPanel>
+</ui:composition>

@@ -1,0 +1,21 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+
+	<a4j:outputPanel layout="block"
+		rendered="#{!empty demandeManager.eventDestinatairesAsString}"
+		styleClass="destinataires-dialogue">
+		<h:outputFormat value="#{messages['event.accessible']}">
+			<f:param value="#{demandeManager.eventDestinatairesAsString}" />
+		</h:outputFormat>
+	</a4j:outputPanel>
+
+</ui:composition>

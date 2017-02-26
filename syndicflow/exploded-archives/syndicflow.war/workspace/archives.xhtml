@@ -1,0 +1,47 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template_frame.xhtml">
+
+
+	<ui:define name="title">#{messages['menu.interventions.archive']} (#{archivesManager.interventions.size()})</ui:define>
+
+	<ui:define name="body">
+		<rich:toolbar itemSeparator="grid" height="30">
+					<rich:toolbarGroup rendered="#{immeubles.size() &gt; 1}">
+				<h:form>
+
+				<h:selectOneMenu value="#{archivesManager.immeuble}" >
+					<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" render="demandesList" />
+					<s:selectItems value="#{immeubles}" var="immeuble"
+				label="#{immeuble}"
+				noSelectionLabel="#{messages['noSelection.immeuble']}"/>
+					<s:convertEntity/>
+					<s:conversationId/>
+				</h:selectOneMenu>
+				</h:form>
+			</rich:toolbarGroup>
+			<!-- @newMenuItem@ -->
+			<rich:toolbarGroup location="right">
+				<ui:include src="common/filtre.xhtml" >
+					<ui:param name="manager" value="#{archivesManager}" />
+				</ui:include>
+			</rich:toolbarGroup>
+		</rich:toolbar>
+
+		<ui:include src="archives/liste.xhtml" />
+
+		<a4j:outputPanel id="dialogPanel" layout="block">
+			<ui:include src="intervention/taskDialog.xhtml">
+				<ui:param name="taskButtonConf"
+					value="#{demandeManager.currentTaskButtonConf}" />
+			</ui:include>
+		</a4j:outputPanel>
+	</ui:define>
+</ui:composition>

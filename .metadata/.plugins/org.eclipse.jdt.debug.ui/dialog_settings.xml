@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="EXPRESSION_INPUT_DIALOG">
+		<item value="551" key="DIALOG_WIDTH"/>
+		<item value="301" key="DIALOG_Y_ORIGIN"/>
+		<item value="653" key="DIALOG_X_ORIGIN"/>
+		<item value="362" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+	<section name="conditionHistory">
+	</section>
+	<section name="AddExceptionDialog">
+		<item value="true" key="uncaughtChecked"/>
+		<item value="true" key="caughtChecked"/>
+	</section>
+	<section name="STRING_VALUE_INPUT_DIALOG">
+		<item value="348" key="DIALOG_WIDTH"/>
+		<item value="false" key="USE_EVALUATION"/>
+		<item value="258" key="DIALOG_Y_ORIGIN"/>
+		<item value="true" key="WRAP_TEXT"/>
+		<item value="754" key="DIALOG_X_ORIGIN"/>
+		<item value="427" key="DIALOG_HEIGHT"/>
+		<item value="1|Ubuntu|11.0|0|GTK|1|" key="DIALOG_FONT_NAME"/>
+	</section>
+</section>

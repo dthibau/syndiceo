@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:m="http://jboss.com/products/seam/mail"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+		<h:outputText value="#{messages['mail.common.directDownload.label']}" /><br/>
+		<ui:repeat var="pj" value="#{event.intervention.piecesJointes}">
+			<a class="logoLien" href="#{server}/workspace/DirectDownload/document.seam?dId=#{event.intervention.id}&amp;docId=#{pj.id}">#{pj.fileName}</a>	
+		</ui:repeat>
+		
+		 
+		<br/><br/>
+	
+
+
+</ui:composition>

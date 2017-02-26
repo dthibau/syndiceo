@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-init-method="init"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:seam="http://jboss.org/schema/seam/spring-seam"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://jboss.org/schema/seam/spring-seam
+http://jboss.org/schema/seam/spring-seam-2.3.xsd">
+
+
+
+
+	<import resource="spring-taskconf.xml" />
+
+	<bean id="taskHandler" class="com.syndiceo.proc.TaskHandler"
+		factory-method="getInstance">
+		<property name="taskDao" ref="taskDao" />
+		<property name="jbpmHelper" ref="jbpmHelper" />
+	</bean>
+
+	<bean id="taskDao" class="com.syndiceo.proc.dao.TaskDaoImpl">
+		<property name="jbpmHelper" ref="jbpmHelper" />
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+
+	<bean id="jbpmHelper" class="com.syndiceo.proc.JbpmHelperImpl"
+		init-method="init" />
+	<seam:instance id="entityManager" name="entityManager"
+		proxy="true" />
+
+	<bean id="interventionDao" class="com.syndiceo.model.dao.InterventionDao">
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+	
+	<bean id="autreDemandeDao" class="com.syndiceo.model.dao.AutreDemandeDao">
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+	
+	<bean id="accountDao" class="com.syndiceo.model.dao.AccountDao">
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+
+	<bean id="organizationalEntityDao" class="com.syndiceo.model.dao.OrganizationalEntityDao">
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+
+	<bean id="immeubleDao" class="com.syndiceo.model.dao.ImmeubleDao">
+		<property name="entityManager" ref="entityManager" />
+	</bean>
+</beans>

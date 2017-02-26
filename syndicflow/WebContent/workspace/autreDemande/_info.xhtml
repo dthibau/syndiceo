@@ -1,0 +1,101 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<fieldset>
+		<legend>#{messages['demande.info.avancement']}</legend>
+		<table>
+			<tbody>
+				<tr>
+					<td>#{messages['demande.info.numero']}</td>
+					<td><h:outputText
+							value="#{autreDemandeDTO.numero}" /></td>
+				</tr>
+				<tr>
+					<td>#{messages['demande.info.creation']}</td>
+					<td><h:outputText
+							value="#{autreDemandeDTO.createdDate}">
+							<s:convertDateTime pattern="#{messages['syndicflow.dateformat']}" />
+						</h:outputText> par #{autreDemandeDTO.demandeur.nomComplet}</td>
+				</tr>
+				<tr>
+					<td>#{messages['demande.info.statusCode']}</td>
+					<td>#{messages[autreDemandeDTO.statusCode]}</td>
+				</tr>
+				<tr>
+					<td>#{messages['demande.info.gestionnaire']}</td>
+					<td>#{autreDemandeDTO.gestionnaire.nomComplet}
+						#{autreDemandeDTO.gestionnaire.telephone}</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			<h:outputText value="#{messages['intervention.groupe.description']}" />
+		</legend>
+		<table>
+			<tbody>
+				<tr>
+					<td>#{messages['autreDemande.field.critere']}</td>
+					<td>#{autreDemandeDTO.autreDemande.critere.nom}</td>
+				</tr>
+				<a4j:outputPanel
+					rendered="#{autreDemandeDTO.autreDemande.sousCritere != null}">
+					<tr>
+						<td>#{messages['autreDemande.field.sousCritere']}</td>
+						<td>#{autreDemandeDTO.autreDemande.sousCritere.nom}</td>
+					</tr>
+				</a4j:outputPanel>
+				<tr>
+					<td>#{messages['demande.field.description']}</td>
+					<td>#{autreDemandeDTO.description}</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+
+
+	<fieldset>
+		<legend>#{messages['intervention.groupe.piecesjointes']}</legend>
+		<table>
+			<tbody>
+				<ui:repeat value="#{autreDemandeDTO.autreDemande.piecesJointes}" var="doc">
+					<tr>
+						<td><h:commandLink styleClass="lien-document" immediate="true" target="_popup" value="#{doc.fileName}" action="#{documentHelper.download(doc)}">
+						<s:conversationId/>
+						</h:commandLink>
+						</td>
+					</tr>
+
+				</ui:repeat>
+			</tbody>
+		</table>
+	</fieldset>
+	<fieldset>
+		<legend>#{messages['intervention.groupe.fichiers']}</legend>
+		<table>
+			<tbody>
+				<ui:repeat value="#{autreDemandeDTO.autreDemande.fichiers}" var="doc">
+					<tr>
+						<td><h:commandLink styleClass="lien-document" immediate="true" target="_popup" value="#{doc.fileName}" action="#{documentHelper.download(doc)}">
+						<s:conversationId/>
+						</h:commandLink>
+						</td>
+					</tr>
+
+				</ui:repeat>
+			</tbody>
+		</table>
+	</fieldset>
+
+
+</ui:composition>

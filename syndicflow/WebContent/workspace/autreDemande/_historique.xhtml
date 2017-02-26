@@ -1,0 +1,47 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<div class="history_arrete_liste">
+		<ui:repeat value="#{autreDemandeDTO.autreDemande.events}" var="evt">
+			<a4j:outputPanel layout="block" rendered="#{!evt.taskCode.equals('UPDATE_FIELD')}" styleClass="arrete #{autreDemandeDTO.autreDemande.events.indexOf(evt)%2 == 0 ? 'pair' : 'impair'}">
+				<div class="date_time item">
+					<h:outputText value="#{evt.timestamp}">
+						<s:convertDateTime pattern="#{messages['syndicflow.timestampformat']}"></s:convertDateTime>
+					</h:outputText></div>
+				<div class="corps">
+					<div class="action item">#{messages[evt.taskCode]}</div>
+					<div class="acteur item">#{evt.actor.nomComplet}</div>
+					<a4j:outputPanel layout="block" rendered="#{!empty demandeManager.getEventDestinatairesAsString(evt)}" styleClass="destinataires item"><i>#{messages['event.envoyeA']} : #{demandeManager.getEventDestinatairesAsString(evt)}</i></a4j:outputPanel>
+					<div class="message item">
+						<h:outputFormat escape="false" value="#{Labels.textToHtml(evt.comment)}"/></div>
+				</div>
+			</a4j:outputPanel>
+			<a4j:outputPanel layout="block" rendered="#{evt.taskCode.equals('UPDATE_FIELD')}" styleClass="arrete #{autreDemandeDTO.autreDemande.events.indexOf(evt)%2 == 0 ? 'pair' : 'impair'}">
+				<div class="date_time item">
+					<h:outputText value="#{evt.timestamp}">
+						<s:convertDateTime pattern="#{messages['syndicflow.timestampformat']}"></s:convertDateTime>
+					</h:outputText>&#160;(#{evt.actor.nomComplet})&#160;<h:outputFormat escape="false" value="#{Labels.textToHtml(evt.comment)}"/>
+				</div>
+			</a4j:outputPanel>
+			<a4j:outputPanel layout="block" rendered="#{not empty evt.fichiers}">
+				<ui:repeat value="#{evt.fichiers}" var="_fichier">
+   					<ul class="liste-documents-attaches">
+   					<li class="elm-document-attache">
+   					<span><h:commandLink styleClass="lien-document" immediate="true" target="_popup" value="#{_fichier.fileName}" action="#{documentHelper.download(_fichier)}"/></span>
+					</li>
+					</ul>
+   				</ui:repeat>
+			</a4j:outputPanel> 
+			<hr/>
+		</ui:repeat>
+	</div>
+
+</ui:composition>

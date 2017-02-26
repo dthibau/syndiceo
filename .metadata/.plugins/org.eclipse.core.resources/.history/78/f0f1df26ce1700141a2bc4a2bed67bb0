@@ -1,0 +1,81 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<h:form>
+		<a4j:region id="actionRegion">
+			<rich:panel>
+				<table width="100%">
+					<tr>
+
+
+						<a4j:repeat
+							value="#{buttonConfs}"
+							var="buttonConf">
+							<td><a4j:commandButton
+									rendered="#{buttonConf.issue == T_COMPLETE or buttonConf.issue == T_MSG}"
+									action="#{demandeManager.doStuff(buttonConf)}"
+									value="#{messages[buttonConf.labelCode]}" execute="@this"
+									render="dialogContentPanel,dialogButtonPanel,dialogInfoPanel,dialogTitlePanel"
+									oncomplete="#{rich:component('taskDialogPanel')}.show()">
+									<f:param name="cid" value="#{conversation.id}" />
+								</a4j:commandButton> <a4j:commandButton
+									rendered="#{buttonConf.issue != T_COMPLETE and buttonConf.issue != T_MSG}"
+									action="#{demandeManager.doStuff(buttonConf)}"
+									value="#{messages[buttonConf.labelCode]}">
+									<f:param name="cid" value="#{conversation.id}" />
+								</a4j:commandButton></td>
+						</a4j:repeat>
+
+						<a4j:repeat value="#{demandeDTO.directTasks}" var="directTask">
+							<td><a4j:commandButton
+									action="#{demandeManager.doStuff(directTask)}"
+									value="#{messages[directTask.code]}" execute="@this"
+									render="dialogContentPanel,dialogButtonPanel,dialogInfoPanel,dialogTitlePanel"
+									oncomplete="#{rich:component('taskDialogPanel')}.show()">
+									<f:param name="cid" value="#{conversation.id}" />
+								</a4j:commandButton></td>
+						</a4j:repeat>
+						<td><a4j:commandButton
+										rendered="#{demandeDTO.hasMessageTask()"
+										action="#{demandeManager.doMsg()}"
+										value="#{messages['action.msg']}"
+										render="dialogContentPanel,dialogButtonPanel,dialogInfoPanel,dialogTitlePanel"
+										oncomplete="#{rich:component('taskDialogPanel')}.show()"
+										eventsQueue="#{conversation.id}" >
+										<f:param name="cid" value="#{conversation.id}" />
+										</a4j:commandButton></td>
+						<td><a4j:commandButton
+										rendered="#{demandeDTO.hasUpdateDestTask()"
+										action="#{interventionManager.doUpdateDest()}"
+										value="#{messages['action.updateDest']}"
+										render="dialogContentPanel,dialogButtonPanel,dialogInfoPanel,dialogTitlePanel"
+										oncomplete="#{rich:component('taskDialogPanel')}.show()"
+										eventsQueue="#{conversation.id}" >
+										<f:param name="cid" value="#{conversation.id}" />
+										</a4j:commandButton></td>
+
+					</tr>
+				</table>
+			</rich:panel>
+		</a4j:region>
+		<a4j:status for="actionRegion">
+			<f:facet name="start">
+				<div id="loading" class="wait_ajax">
+					<div class="cartouche_ajax">
+						<div class="ajax_loader"></div>
+					</div>
+				</div>
+			</f:facet>
+		</a4j:status>
+
+	</h:form>
+
+</ui:composition>

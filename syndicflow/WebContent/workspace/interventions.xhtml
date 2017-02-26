@@ -1,0 +1,73 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="../layout/template_frame.xhtml">
+
+
+	<ui:define name="title">#{messages['menu.interventions.encours']} (#{interventionsManager.demandes.size()})</ui:define>
+
+	<ui:define name="body">
+		<rich:toolbar itemSeparator="grid" height="30">
+			<rich:toolbarGroup rendered="#{loggedUser.is('r_conseil')}">
+				<h:form>
+				<h:selectOneRadio value="#{interventionsManager.filter}">
+					<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" render="demandesList" />
+					<f:selectItem itemValue="encours" itemLabel="#{messages['D_ENCOURS']}" />
+					<f:selectItem itemValue="all" itemLabel="#{messages['D_ALL']}" />
+					<s:conversationId/>
+				</h:selectOneRadio>
+				</h:form>
+			</rich:toolbarGroup>
+			<rich:toolbarGroup rendered="#{loggedUser.is('r_admin') or loggedUser.is('r_gestionnaire')}">
+				<h:form>
+				<h:selectOneMenu value="#{interventionsManager.stateCode}">
+					<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" render="demandesList" />
+					<f:selectItems value="#{stateSelectItems}" />
+					<s:conversationId/>
+				</h:selectOneMenu>
+				<h:selectOneMenu value="#{interventionsManager.immeuble}" rendered="#{immeubles.size() &gt; 1}">
+					<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" render="demandesList" />
+					<s:selectItems value="#{immeubles}" var="immeuble"
+				label="#{immeuble}"
+				noSelectionLabel="#{messages['noSelection.immeuble']}"/>
+					<s:convertEntity/>
+					<s:conversationId/>
+				</h:selectOneMenu>
+				</h:form>
+			</rich:toolbarGroup>
+			<rich:toolbarGroup rendered="#{(loggedUser.is('r_conseil') or loggedUser.is('r_copro')) and immeubles.size() &gt; 1}">
+				<h:form>
+				<h:selectOneMenu value="#{interventionsManager.immeuble}" rendered="#{immeubles.size() &gt; 1}">
+					<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" render="demandesList" />
+					<s:selectItems value="#{immeubles}" var="immeuble"
+				label="#{immeuble}"
+				noSelectionLabel="#{messages['noSelection.immeuble']}"/>
+					<s:convertEntity/>
+					<s:conversationId/>
+				</h:selectOneMenu>
+				</h:form>
+			</rich:toolbarGroup>
+			<!-- @newMenuItem@ -->
+			<rich:toolbarGroup location="right">
+				<ui:include src="common/filtre.xhtml" >
+					<ui:param name="manager" value="#{interventionsManager}" />
+				</ui:include>
+			</rich:toolbarGroup>
+		</rich:toolbar>
+
+		<ui:include src="interventions/liste.xhtml" />
+
+		<a4j:outputPanel id="dialogPanel" layout="block">
+			<ui:include src="intervention/taskDialog.xhtml">
+				<ui:param name="taskButtonConf"
+					value="#{demandeManager.currentTaskButtonConf}" />
+			</ui:include>
+		</a4j:outputPanel>
+	</ui:define>
+</ui:composition>

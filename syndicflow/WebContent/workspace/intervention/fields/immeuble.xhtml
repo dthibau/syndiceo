@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+<div id="immeubleDecoration_sel">
+	<s:decorate id="immeubleDecoration" styleClass="champ obligatoire" 
+		template="../../../layout/edit.xhtml">
+		<ui:define name="label">
+			<h:outputText value="#{messages['demande.field.immeuble']}" />
+		</ui:define>
+		<a4j:outputPanel rendered="#{!loggedUser.is('r_admin')}">
+		<h:selectOneMenu value="#{intervention.immeuble}" required="true" rendered="#{intervention.isNew() and loggedUser.immeublesActeur.size &gt; 1}">
+			<a4j:ajax event="change" render="conseilsPanel" listener="#{createInterventionManager.changeImmeuble}"/>
+			<s:selectItems value="#{loggedUser.immeublesActeur}" var="immeuble" 
+				label="#{immeuble}" noSelectionLabel="#{messages['noSelection.immeuble']}" />
+			<s:convertEntity />
+		</h:selectOneMenu>
+		<h:outputText value="#{intervention.immeuble}" rendered="#{!intervention.isNew() or loggedUser.immeublesActeur.size == 1}"/>
+		</a4j:outputPanel>
+		<a4j:outputPanel rendered="#{loggedUser.is('r_admin')}">
+			<h:selectOneMenu value="#{intervention.immeuble}" required="true" rendered="#{intervention.isNew()}">
+				<a4j:ajax event="change" render="conseilsPanel" listener="#{createInterventionManager.changeImmeuble}"/>
+				<s:selectItems value="#{immeubles}" var="immeuble" 
+					label="#{immeuble}" noSelectionLabel="#{messages['noSelection.immeuble']}" />
+				<s:convertEntity />
+			</h:selectOneMenu>
+			<h:outputText value="#{intervention.immeuble.numero}" rendered="#{!intervention.isNew()}"/>
+		</a4j:outputPanel>
+	
+	</s:decorate>
+</div>
+</ui:composition>

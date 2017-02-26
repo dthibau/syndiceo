@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+	<a4j:outputPanel id="dateSouhaiteeDecoration">
+		<s:decorate styleClass="champ obligatoire"
+			template="../../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText
+					value="#{messages['intervention.field.dateSouhaitee']}" />
+			</ui:define>
+			<rich:calendar value="#{intervention.dateSouhaitee}"
+				rendered="#{intervention.isNew()}" popup="true"
+				datePattern="#{messages['syndicflow.dateformat']}"
+				monthLabels="#{messages['syndicflow.calendar.monthLabels']}"
+				monthLabelsShort="#{messages['syndicflow.calendar.monthLabelsShort']}"
+				weekDayLabels="#{messages['syndicflow.calendar.weekDayLabels']}"
+				weekDayLabelsShort="#{messages['syndicflow.calendar.weekDayLabelsShort']}"
+				todayControlMode="hidden" bypassUpdates="true"
+				enableManualInput="false"
+				mode="ajax" boundaryDatesMode="scroll"
+				dataModel="#{dateInterventionModel}">
+
+			</rich:calendar>
+
+			<rich:calendar value="#{intervention.dateSouhaitee}"
+				rendered="#{!intervention.isNew()}" popup="true"
+				datePattern="#{messages['syndicflow.dateformat']}"
+				monthLabels="#{messages['syndicflow.calendar.monthLabels']}"
+				monthLabelsShort="#{messages['syndicflow.calendar.monthLabelsShort']}"
+				weekDayLabels="#{messages['syndicflow.calendar.weekDayLabels']}"
+				weekDayLabelsShort="#{messages['syndicflow.calendar.weekDayLabelsShort']}"
+				todayControlMode="hidden" bypassUpdates="true"
+				enableManualInput="false"
+				mode="ajax" boundaryDatesMode="scroll"
+				dataModel="#{dateInterventionModel}">
+				<a4j:ajax event="change" queueId="#{conversation.id}"
+					execute="@this"
+					listener="#{interventionManager.updateDemande(messages['intervention.field.dateSouhaitee'])}"
+					render="dateSouhaiteeDecoration,messages" />
+			</rich:calendar>
+		</s:decorate>
+	</a4j:outputPanel>
+
+
+</ui:composition>

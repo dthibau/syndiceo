@@ -1,0 +1,72 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="../../layout/template_frame.xhtml">
+
+	<ui:define name="title">
+		<a4j:outputPanel id="titlePanel">
+			<h:outputFormat value="#{messages['title.intervention.detail']}">
+				<f:param value="#{autreDemandeDTO.id}" />
+				<f:param value="#{autreDemandeDTO.titre}" />
+			</h:outputFormat>
+		</a4j:outputPanel>
+	</ui:define>
+
+	<ui:define name="body">
+
+
+		<a4j:outputPanel
+			rendered="#{demandeManager.isForm() and autreDemandeDTO.currentTask.code.equals('UPDATE')}">
+			<h5 class="intro" style="border-radius: 10px 10px 10px 10px;">
+				<span class="texte-titre-groupe"> Si vous désirez modifier
+					votre demande intiale, modifiez le formulaire ci-dessous. Toutes
+					vos modifications seront automatiquement transmises au gestionnaire
+					SyndicEo concerné. <br /> Vous serez ensuite avisé de la suite qui
+					sera donnée à votre demande d'intervention.
+				</span>
+			</h5>
+		</a4j:outputPanel>
+
+
+		<h:form>
+			<rich:tabPanel switchType="client">
+				<rich:tab header="Formulaire"
+					rendered="#{demandeDTO.mode == M_EDIT_DEMANDE}">
+					<ui:include src="forms/autreDemande.xhtml">
+						<ui:param name="manager" value="#{autreDemandeManager}" />
+						<ui:param name="autreDemande" value="#{autreDemandeDTO.autreDemande}" />
+						<ui:param name="taskConf"
+							value="#{taskConf[autreDemandeDTO.currentTask.code]}" />
+						<ui:param name="edit" value="true" />
+					</ui:include>
+				</rich:tab>
+				<rich:tab header="Information">
+					<ui:include src="_info.xhtml" />
+				</rich:tab>
+				<rich:tab header="Historique">
+					<ui:include src="_historique.xhtml" />
+				</rich:tab>
+			</rich:tabPanel>
+		</h:form>
+
+		<ui:include src="buttonBar.xhtml" >
+			<ui:param name="buttonConfs" value="#{taskConf[autreDemandeDTO.currentTask.code].buttonConfs}"/>
+		</ui:include>
+
+
+
+		<a4j:outputPanel id="dialogPanel" layout="block">
+			<ui:include src="taskDialog.xhtml">
+				<ui:param name="taskButtonConf"
+					value="#{demandeManager.currentTaskButtonConf}" />
+			</ui:include>
+		</a4j:outputPanel>
+
+	</ui:define>
+</ui:composition>

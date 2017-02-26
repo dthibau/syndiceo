@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_type_travauxItem" structureRef="String" />
+  <itemDefinition id="_top_idItem" structureRef="Integer" />
+  <itemDefinition id="_gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_conseilItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_ret_interventionItem" structureRef="String" />
+
+  <itemDefinition id="_17-type_travauxItem" structureRef="String" />
+  <itemDefinition id="_17-top_idItem" structureRef="Integer" />
+  <itemDefinition id="_17-gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_17-conseilItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_17-immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_17-ret_interventionItem" structureRef="String" />
+
+  <itemDefinition id="_29-type_travauxItem" structureRef="String" />
+  <itemDefinition id="_29-top_idItem" structureRef="Integer" />
+  <itemDefinition id="_29-gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_29-conseilItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_29-immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_29-ret_interventionItem" structureRef="String" />
+
+  <itemDefinition id="_13-type_travauxItem" structureRef="String" />
+  <itemDefinition id="_13-top_idItem" structureRef="Integer" />
+  <itemDefinition id="_13-gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_13-conseilItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_13-immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_13-ret_interventionItem" structureRef="String" />
+
+  <itemDefinition id="_31-type_travauxItem" structureRef="String" />
+  <itemDefinition id="_31-top_idItem" structureRef="Integer" />
+  <itemDefinition id="_31-gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_31-conseilItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_31-immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_31-ret_interventionItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="intervention" name="intervention" >
+
+    <!-- process variables -->
+    <property id="type_travaux" itemSubjectRef="_type_travauxItem"/>
+    <property id="top_id" itemSubjectRef="_top_idItem"/>
+    <property id="gestionnaire" itemSubjectRef="_gestionnaireItem"/>
+    <property id="conseil" itemSubjectRef="_conseilItem"/>
+    <property id="immeuble" itemSubjectRef="_immeubleItem"/>
+    <property id="ret_intervention" itemSubjectRef="_ret_interventionItem"/>
+
+    <!-- nodes -->
+    <userTask id="_17" name="Verifier intervention" >
+      <ioSpecification>
+        <dataInput id="_17_CommentInput" name="Comment" />
+        <dataInput id="_17_SkippableInput" name="Skippable" />
+        <dataInput id="_17_TaskNameInput" name="TaskName" />
+        <dataInput id="_17_GroupIdInput" name="GroupId" />
+        <dataInput id="_17_PriorityInput" name="Priority" />
+        <dataOutput id="_17_ret_interventionOutput" name="ret_intervention" />
+        <inputSet>
+          <dataInputRefs>_17_CommentInput</dataInputRefs>
+          <dataInputRefs>_17_SkippableInput</dataInputRefs>
+          <dataInputRefs>_17_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_17_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_17_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_17_ret_interventionOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_17_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_17_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_17_SkippableInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">false</from>
+          <to xsi:type="tFormalExpression">_17_SkippableInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_17_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">CHECK_INTERVENTION</from>
+          <to xsi:type="tFormalExpression">_17_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_17_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">r_admin</from>
+          <to xsi:type="tFormalExpression">_17_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_17_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression"></from>
+          <to xsi:type="tFormalExpression">_17_PriorityInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_17_ret_interventionOutput</sourceRef>
+        <targetRef>ret_intervention</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>#{gestionnaire.id}</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <endEvent id="_16" name="CLOTURE" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <startEvent id="_1" name="StartProcess" />
+    <exclusiveGateway id="_32" name="Gateway" gatewayDirection="Converging" />
+    <exclusiveGateway id="_21" name="XOR_EXIT" gatewayDirection="Converging" />
+    <callActivity id="_4" name="Validation demande" calledElement="validation" tns:independent="false" >
+      <ioSpecification>
+        <dataInput id="_4_gestionnaireInput" name="gestionnaire" />
+        <dataInput id="_4_conseilInput" name="conseil" />
+        <dataInput id="_4_immeubleInput" name="immeuble" />
+        <dataInput id="_4_top_idInput" name="top_id" />
+        <dataOutput id="_4_type_travauxOutput" name="type_travaux" />
+        <inputSet>
+          <dataInputRefs>_4_gestionnaireInput</dataInputRefs>
+          <dataInputRefs>_4_conseilInput</dataInputRefs>
+          <dataInputRefs>_4_immeubleInput</dataInputRefs>
+          <dataInputRefs>_4_top_idInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_4_type_travauxOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>gestionnaire</sourceRef>
+        <targetRef>_4_gestionnaireInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>conseil</sourceRef>
+        <targetRef>_4_conseilInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>immeuble</sourceRef>
+        <targetRef>_4_immeubleInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>top_id</sourceRef>
+        <targetRef>_4_top_idInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_4_type_travauxOutput</sourceRef>
+        <targetRef>type_travaux</targetRef>
+      </dataOutputAssociation>
+    </callActivity>
+    <exclusiveGateway id="_27" name="Gateway" gatewayDirection="Diverging" />
+    <userTask id="_29" name="Replanifier intervention" >
+      <ioSpecification>
+        <dataInput id="_29_TaskNameInput" name="TaskName" />
+        <dataInput id="_29_GroupIdInput" name="GroupId" />
+        <dataInput id="_29_PriorityInput" name="Priority" />
+        <inputSet>
+          <dataInputRefs>_29_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_29_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_29_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_29_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">REPLANIFY</from>
+          <to xsi:type="tFormalExpression">_29_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_29_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">r_admin</from>
+          <to xsi:type="tFormalExpression">_29_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_29_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">1</from>
+          <to xsi:type="tFormalExpression">_29_PriorityInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>#{gestionnaire.id}</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <exclusiveGateway id="_28" name="XOR_INTERVENTION" gatewayDirection="Diverging" />
+    <userTask id="_13" name="INSCRIT AG" >
+      <ioSpecification>
+        <dataInput id="_13_TaskNameInput" name="TaskName" />
+        <dataInput id="_13_GroupIdInput" name="GroupId" />
+        <dataInput id="_13_PriorityInput" name="Priority" />
+        <inputSet>
+          <dataInputRefs>_13_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_13_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_13_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_13_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">INSCRIT</from>
+          <to xsi:type="tFormalExpression">_13_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_13_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">r_admnistrateur</from>
+          <to xsi:type="tFormalExpression">_13_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_13_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">11</from>
+          <to xsi:type="tFormalExpression">_13_PriorityInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>#{gestionnaire.id}</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <userTask id="_31" name="Planifier intervention" >
+      <ioSpecification>
+        <dataInput id="_31_TaskNameInput" name="TaskName" />
+        <dataInput id="_31_GroupIdInput" name="GroupId" />
+        <dataInput id="_31_PriorityInput" name="Priority" />
+        <inputSet>
+          <dataInputRefs>_31_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_31_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_31_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_31_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">PLANIFY</from>
+          <to xsi:type="tFormalExpression">_31_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_31_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">r_admin</from>
+          <to xsi:type="tFormalExpression">_31_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_31_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">1</from>
+          <to xsi:type="tFormalExpression">_31_PriorityInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>#{gestionnaire.id}</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <exclusiveGateway id="_30" name="XOR_CHECK_INTERVENTION" gatewayDirection="Converging" />
+
+    <!-- connections -->
+    <sequenceFlow id="_30-_17" sourceRef="_30" targetRef="_17" />
+    <sequenceFlow id="_21-_16" sourceRef="_21" targetRef="_16" />
+    <sequenceFlow id="_27-_32" sourceRef="_27" targetRef="_32" name="GROS" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return (type_travaux.equals("GROS"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_28-_32" sourceRef="_28" targetRef="_32" name="GROS" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ret_intervention.equals("GROS");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_13-_21" sourceRef="_13" targetRef="_21" />
+    <sequenceFlow id="_28-_21" sourceRef="_28" targetRef="_21" name="OK" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ret_intervention.equals("OK");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_1-_4" sourceRef="_1" targetRef="_4" />
+    <sequenceFlow id="_4-_27" sourceRef="_4" targetRef="_27" />
+    <sequenceFlow id="_28-_29" sourceRef="_28" targetRef="_29" name="NOK" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ret_intervention.equals("NOK");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_17-_28" sourceRef="_17" targetRef="_28" />
+    <sequenceFlow id="_32-_13" sourceRef="_32" targetRef="_13" />
+    <sequenceFlow id="_27-_31" sourceRef="_27" targetRef="_31" name="PETIT" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return (type_travaux.equals("PETIT"));</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_29-_30" sourceRef="_29" targetRef="_30" />
+    <sequenceFlow id="_31-_30" sourceRef="_31" targetRef="_30" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="intervention" >
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="308" y="342" width="187" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="588" y="593" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="178" y="25" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="637" y="193" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="591" y="456" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="402" y="25" width="179" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27" >
+        <dc:Bounds x="462" y="112" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="27" y="340" width="216" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="377" y="455" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="607" y="303" width="138" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="203" y="155" width="166" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_30" >
+        <dc:Bounds x="241" y="243" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_30-_17" >
+        <di:waypoint x="265" y="267" />
+        <di:waypoint x="401" y="366" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_16" >
+        <di:waypoint x="615" y="480" />
+        <di:waypoint x="612" y="617" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-_32" >
+        <di:waypoint x="486" y="136" />
+        <di:waypoint x="661" y="217" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_28-_32" >
+        <di:waypoint x="401" y="479" />
+        <di:waypoint x="661" y="217" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_21" >
+        <di:waypoint x="676" y="327" />
+        <di:waypoint x="615" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_28-_21" >
+        <di:waypoint x="401" y="479" />
+        <di:waypoint x="615" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_4" >
+        <di:waypoint x="202" y="49" />
+        <di:waypoint x="491" y="49" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_27" >
+        <di:waypoint x="491" y="49" />
+        <di:waypoint x="486" y="136" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_28-_29" >
+        <di:waypoint x="401" y="479" />
+        <di:waypoint x="134" y="482" />
+        <di:waypoint x="135" y="364" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_28" >
+        <di:waypoint x="401" y="366" />
+        <di:waypoint x="401" y="479" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_13" >
+        <di:waypoint x="661" y="217" />
+        <di:waypoint x="676" y="327" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-_31" >
+        <di:waypoint x="486" y="136" />
+        <di:waypoint x="286" y="179" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_30" >
+        <di:waypoint x="135" y="364" />
+        <di:waypoint x="136" y="268" />
+        <di:waypoint x="265" y="267" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_31-_30" >
+        <di:waypoint x="286" y="179" />
+        <di:waypoint x="265" y="267" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

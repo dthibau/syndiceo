@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.jboss.seam.core.Conversation"/>
+<fullyQualifiedTypeName name="com.syndiceo.model.Account"/>
+<fullyQualifiedTypeName name="javax.persistence.Temporal"/>
+<fullyQualifiedTypeName name="javax.persistence.TemporalType"/>
+<fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
+<fullyQualifiedTypeName name="com.syndiceo.model.Lu"/>
+<fullyQualifiedTypeName name="com.syndiceo.model.Demande"/>
+<fullyQualifiedTypeName name="com.syndiceo.model.dao.LuDao"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="org.hibernate.Hibernate"/>
+<fullyQualifiedTypeName name="com.syndiceo.model.Intervention"/>
+<fullyQualifiedTypeName name="java.util.Locale"/>
+<fullyQualifiedTypeName name="com.syndiceo.Labels"/>
+<fullyQualifiedTypeName name="com.syndiceo.proc.TaskButtonConf"/>
+<fullyQualifiedTypeName name="com.syndiceo.Application"/>
+</qualifiedTypeNameHistroy>

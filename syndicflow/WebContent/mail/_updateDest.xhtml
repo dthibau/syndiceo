@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:m="http://jboss.org/schema/seam/mail"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+	<h:outputFormat escape="false" value="#{messages[event.mailCode]}">
+		<f:param value="#{event.actor.getNomComplet()}" />
+		<f:param value="#{demande.numero}" />
+		<f:param value="#{demande.titre}" />
+		<f:param value="#{dateFormat.format(demande.createdDate)}" />
+	</h:outputFormat>
+	<br />
+	<br />
+	<u><h:outputText value="#{messages['mail.newDest']}" /></u>
+	<br />
+	<h:outputText value="#{messages['intervention.field.conseils']}"
+		rendered="#{not empty intervention.conseils}" />
+	<br />
+	<a:repeat value="#{intervention.conseils}" var="conseil">
+					#{conseil.nomComplet}<br />
+	</a:repeat>
+	<h:outputText value="#{messages['intervention.field.pourInfo']}"
+		rendered="#{not empty intervention.pourInfo1 or not empty intervention.pourInfo2 or not empty intervention.pourInfo3}" />
+	<br />
+	<a:outputPanel rendered="#{not empty intervention.pourInfo1}">
+					#{intervention.pourInfo1}<br />
+	</a:outputPanel>
+	<a:outputPanel rendered="#{not empty intervention.pourInfo2}">
+					#{intervention.pourInfo2}<br />
+	</a:outputPanel>
+	<a:outputPanel rendered="#{not empty intervention.pourInfo3}">
+					#{intervention.pourInfo3}<br />
+	</a:outputPanel>
+
+</ui:composition>

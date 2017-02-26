@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+	<s:decorate id="specialiteDecoration" styleClass="champ obligatoire"
+		template="../../../layout/edit.xhtml">
+		<ui:define name="label">
+			<h:outputText value="#{messages['intervention.field.specialite']}" />
+		</ui:define>
+		<h:selectOneMenu value="#{intervention.specialite}" required="true" rendered="#{intervention.isNew()}">
+			<a:ajax event="change" render="sousSpecialitePanel">
+
+			</a:ajax>
+			<s:selectItems value="#{specialites}" var="specialite"
+				label="#{specialite.nom}"
+				noSelectionLabel="#{messages['noSelection.specialite']}" />
+			<s:convertEntity />
+			<s:conversationId />
+
+		</h:selectOneMenu>
+		<h:selectOneMenu value="#{intervention.specialite}" required="true" rendered="#{!intervention.isNew()}">
+			<a:ajax event="change"  queueId="#{conversation.id}" execute="@this"
+					listener="#{interventionManager.updateDemande(messages['intervention.field.specialite'])}" render="sousSpecialitePanel,messages">
+
+			</a:ajax>
+			<s:selectItems value="#{specialites}" var="specialite"
+				label="#{specialite.nom}"
+				noSelectionLabel="#{messages['noSelection.specialite']}" />
+			<s:convertEntity />
+			<s:conversationId />
+
+		</h:selectOneMenu>
+
+	</s:decorate>
+
+	<a:outputPanel id="sousSpecialitePanel">
+		<a:outputPanel rendered="#{not empty manager.sousSpecialites}">
+			<s:decorate id="sousSpecialiteDecoration"
+				styleClass="champ" template="../../../layout/edit.xhtml">
+				<ui:define name="label">
+					<h:outputText
+						value="#{messages['intervention.field.sousSpecialite']}" />
+				</ui:define>
+				<h:selectOneMenu value="#{intervention.sousSpecialite}" rendered="#{intervention.isNew()}">
+					<s:selectItems value="#{manager.sousSpecialites}"
+						var="sousSpecialite" label="#{sousSpecialite.nom}"
+						noSelectionLabel="#{messages['noSelection.sousSpecialite']}" />
+					<s:convertEntity />
+					<s:conversationId />
+				</h:selectOneMenu>
+				<h:selectOneMenu id="notNew" value="#{intervention.sousSpecialite}" rendered="#{!intervention.isNew()}">
+				<a:ajax event="change"  queueId="#{conversation.id}" execute="@this"
+					listener="#{interventionManager.updateDemande(messages['intervention.field.sousSpecialite'])}" render="sousSpecialiteDecoration,messages">
+				</a:ajax>
+					<s:selectItems value="#{manager.sousSpecialites}"
+						var="sousSpecialite" label="#{sousSpecialite.nom}"
+						noSelectionLabel="#{messages['noSelection.sousSpecialite']}" />
+					<s:convertEntity />
+					<s:conversationId />
+				</h:selectOneMenu>
+
+
+			</s:decorate>
+		</a:outputPanel>
+	</a:outputPanel>
+</ui:composition>

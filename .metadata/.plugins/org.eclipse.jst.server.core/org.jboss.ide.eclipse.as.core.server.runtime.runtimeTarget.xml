@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<classpath>
+  <source-attachment entry="/home/dthibau/Dev/servers/jboss-as-7.1.1.Final/modules/javax/faces/api/main/jboss-jsf-api_2.1_spec-2.0.1.Final.jar" runtime-id="JBoss 7.1 Runtime" source-attachment-path="/home/dthibau/.m2/repository/org/jboss/spec/javax/faces/jboss-jsf-api_2.1_spec/2.0.1.Final/jboss-jsf-api_2.1_spec-2.0.1.Final-sources.jar"/>
+</classpath>

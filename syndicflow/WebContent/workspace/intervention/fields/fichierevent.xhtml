@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+	
+	<a:region id="regionListeAttachements">						
+	<a:outputPanel id="fichierMainPanel" styleClass="telechargements" layout="block">
+		<input type="hidden" name="cid" value="#{conversation.id}"/>
+   		<div id="fichierManager"><rich:fileUpload id="fichierManager" allowFlash="false"  
+         	fileUploadListener="#{documentHelper.addFichier}" listHeight="39px" acceptedTypes="#{acceptedTypes!=null ? acceptedTypes : ''}" 
+         	immediate="true" 
+         	
+         	onsizerejected="alert('#{messages['upload.sizeError']}')"  
+			addLabel="#{messages['upload.add']}"
+			cancelEntryControlLabel="#{messages['upload.cancel']}"
+			clearAllLabel="#{messages['upload.clearAll']}"
+			clearLabel="#{messages['upload.clearControl']}"
+			doneLabel="#{messages['upload.done']}"
+			progressLabel="#{messages['upload.progress']}"
+			sizeErrorLabel="#{messages['upload.sizeError']}"
+			stopLabel="#{messages['upload.stopControl']}"
+			stopEntryLabel="#{messages['upload.stopEntryControl']}"
+			transferErrorLabel="#{messages['upload.transferError']}"
+			uploadLabel="#{messages['upload.uploadControl']}">
+				<a:ajax event="uploadcomplete" render="fichierMainPanel,#{render}" oncomplete="#{onCompleteEvent!=null ? onCompleteEvent : '' }" eventsQueue="#{conversation.id}"/>
+				<f:facet name="label">
+	                <h:outputText value="#{messages['upload.uploadInfos']}" />							
+		        </f:facet>
+   		</rich:fileUpload>
+   		<a:status for="regionListeAttachements" rendered="#{!disableStatus}">
+			<f:facet name="start">
+				<div id="loading" class="chargement"/>
+			</f:facet>
+		</a:status>	
+   		</div>
+   		<a:outputPanel id="fichierDocListPanel" rendered="#{not empty event.fichiers}" layout="block">
+    		<div>	
+    			<span class="texte-titre-liste">#{messages['demande.field.fichiers']}</span> <small>(#{event.fichiers.size})</small> &#160; <a:commandLink styleClass="retirer-tout" action="#{documentHelper.removeAllDocuments()}" render="fichierMainPanel,status" rendered="#{docsList.size > 1}" title="#{messages['upload.deleteAll']}">#{messages['upload.deleteAll']}</a:commandLink>
+    		</div>					
+   				<a:repeat id="fichierDocList" value="#{event.fichiers}" var="fichier">
+   					<ul class="liste-documents-attaches">
+   					<li class="elm-document-attache">
+   					<span><h:commandLink styleClass="lien-document" immediate="true" target="_popup" value="#{fichier.fileName}" action="#{documentHelper.download(fichier)}"/></span>
+					
+					<span>
+					<a:commandLink styleClass="retirer-document-attache" id="delNrml" title="#{messages['upload.deleteOne']}" 
+					ajaxSingle="true" immediate="true" render="fichierMainPanel,messages" 
+							action="#{documentHelper.removeFichier(fichier)}">
+								#{messages['action.supprimer']} 
+						</a:commandLink>
+					</span>
+					</li>
+					</ul>
+   				</a:repeat>
+
+
+    	</a:outputPanel>
+ 	</a:outputPanel>
+ 	</a:region>
+	
+</ui:composition>

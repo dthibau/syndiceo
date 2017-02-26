@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+		<s:decorate id="datePlanification" styleClass="champ obligatoire" template="../../../layout/edit.xhtml">
+			<ui:define name="label">
+				<h:outputText value="#{messages['intervention.field.planification.date']}"/>
+			</ui:define>
+			<rich:calendar value="#{planification.date}" required="true" rendered="#{!edit}"
+			 	popup="true"
+			 	locale="fr" 
+			 	datePattern="#{messages['syndicflow.dateformat']}" 
+			 	monthLabels="#{messages['syndicflow.calendar.monthLabels']}"
+			 	monthLabelsShort="#{messages['syndicflow.calendar.monthLabelsShort']}"
+			 	weekDayLabels="#{messages['syndicflow.calendar.weekDayLabels']}"
+			 	weekDayLabelsShort="#{messages['syndicflow.calendar.weekDayLabelsShort']}"
+			 	todayControlMode="hidden"
+			 	bypassUpdates="true" enableManualInput="true"
+			 	mode="ajax" boundaryDatesMode="scroll"
+				dataModel="#{dateInterventionModel}">
+			 </rich:calendar>
+
+			 <rich:calendar value="#{planification.date}" required="true" rendered="#{edit}"
+			 	popup="true" 
+			 	locale="fr"
+			 	datePattern="#{messages['syndicflow.dateformat']}" 
+			 	monthLabels="#{messages['syndicflow.calendar.monthLabels']}"
+			 	monthLabelsShort="#{messages['syndicflow.calendar.monthLabelsShort']}"
+			 	weekDayLabels="#{messages['syndicflow.calendar.weekDayLabels']}"
+			 	weekDayLabelsShort="#{messages['syndicflow.calendar.weekDayLabelsShort']}"
+			 	todayControlMode="hidden"
+			 	enableManualInput="true"
+			 	mode="ajax" boundaryDatesMode="scroll"
+				dataModel="#{dateInterventionModel}">
+				<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" 
+					listener="#{interventionManager.updateDemande(message['intervention.field.planification.date'])}"
+					render="datePlanification,messages" >
+					</a4j:ajax>
+			 </rich:calendar>
+		</s:decorate>
+		
+		
+
+</ui:composition>

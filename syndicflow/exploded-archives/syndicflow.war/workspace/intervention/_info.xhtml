@@ -1,0 +1,196 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<fieldset>
+		<legend>#{messages['demande.info.avancement']}</legend>
+		<table>
+			<tbody>
+				<tr>
+					<td>#{messages['demande.info.numero']}</td>
+					<td><h:outputText
+							value="#{interventionDTO.numero}" /></td>
+				</tr>
+				<tr>
+					<td>#{messages['demande.info.creation']}</td>
+					<td><h:outputText
+							value="#{interventionDTO.intervention.createdDate}">
+							<s:convertDateTime pattern="#{messages['syndicflow.dateformat']}" />
+						</h:outputText> par #{interventionDTO.intervention.demandeur.nomComplet}</td>
+				</tr>
+				<tr>
+					<td>#{messages['demande.info.statusCode']}</td>
+					<td>#{messages[interventionDTO.intervention.statusCode]}</td>
+				</tr>
+				<tr>
+					<td>#{messages['demande.info.gestionnaire']}</td>
+					<td>#{interventionDTO.gestionnaire.nomComplet}
+						#{interventionDTO.gestionnaire.telephone}</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+
+	<fieldset>
+		<legend>
+			<h:outputText value="#{messages['intervention.groupe.description']}" />
+		</legend>
+		<table>
+			<tbody>
+				<tr>
+					<td>#{messages['intervention.field.specialite']}</td>
+					<td>#{interventionDTO.intervention.specialite.nom}</td>
+				</tr>
+				<a4j:outputPanel
+					rendered="#{interventionDTO.intervention.sousSpecialite != null}">
+					<tr>
+						<td>#{messages['intervention.field.sousSpecialite']}</td>
+						<td>#{interventionDTO.intervention.sousSpecialite.nom}</td>
+					</tr>
+				</a4j:outputPanel>
+				<tr>
+					<td>#{messages['demande.field.description']}</td>
+					<td><h:outputText value="#{interventionDTO.intervention.descriptionAsHTML}" escape="false"/></td>
+				</tr>
+				<tr>
+					<td>#{messages['intervention.field.batiment']}</td>
+					<td>#{interventionDTO.intervention.batiment}</td>
+				</tr>
+				<tr>
+					<td>#{messages['intervention.field.localisation']}</td>
+					<td>#{interventionDTO.intervention.localisation.nom}</td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+
+	<fieldset>
+		<legend>#{messages['intervention.groupe.contact']}</legend>
+		<table>
+			<tbody>
+				<tr>
+					<td>#{messages['intervention.field.contact']}</td>
+					<td><h:outputText value="#{interventionDTO.contactNom}" /></td>
+				</tr>
+				<tr>
+					<td>#{messages['intervention.field.contactEmail']}</td>
+					<td><h:outputText
+							value="#{interventionDTO.contactEmail}" /></td>
+				</tr>
+				<tr>
+					<td>#{messages['intervention.field.contactTelephone']}</td>
+					<td><h:outputText
+							value="#{interventionDTO.contactTelephone}" /></td>
+				</tr>
+				<tr>
+					<td>#{messages['intervention.field.conseils']}</td>
+					<td><h:outputText value="#{interventionDTO.conseilsAsString}" /></td>
+				</tr>
+				<tr>
+					<td>#{messages['intervention.field.pourInfo']}</td>
+					<td><h:outputText value="#{interventionDTO.intervention.pourInfo1}" />
+					<h:outputText rendered="#{not empty interventionDTO.intervention.pourInfo2}" value=",#{interventionDTO.intervention.pourInfo2}" />
+					<h:outputText rendered="#{not empty interventionDTO.intervention.pourInfo3}" value=",#{interventionDTO.intervention.pourInfo3}" /></td>
+				</tr>
+			</tbody>
+		</table>
+	</fieldset>
+
+
+	<fieldset>
+		<legend>#{messages['intervention.groupe.interventions']}</legend>
+		<table>
+			<tbody>
+				<tr>
+					<td>#{messages['intervention.field.dateSouhaitee']}</td>
+					<td><h:outputText
+							value="#{interventionDTO.intervention.dateSouhaitee}" /></td>
+				</tr>
+				<tr>
+					<td>#{messages['intervention.field.horaireSouhaite']}</td>
+					<td><h:outputText
+							value="#{interventionDTO.intervention.horaireSouhaite != null ? interventionDTO.intervention.horaireSouhaite.nom : ''}" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">#{messages['intervention.field.planifications']}</td>
+				</tr>
+
+				<tr>
+					<td colspan="2"><rich:dataTable
+							value="#{interventionDTO.intervention.planifications}"
+							var="planification">
+							<rich:column>
+								<f:facet name="header">#{messages['intervention.field.planification.date']}</f:facet>
+								<h:outputText value="#{planification.date}">
+									<s:convertDateTime
+										pattern="#{messages['syndicflow.dateformat']}"></s:convertDateTime>
+								</h:outputText>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">#{messages['intervention.field.planification.horaire']}</f:facet>
+								<h:outputText value="#{planification.horaire.nom}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">#{messages['intervention.field.planification.horaireLibre']}</f:facet>
+								<h:outputText value="#{planification.horaireLibre}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">#{messages['intervention.field.planification.prestataire']}</f:facet>
+								<h:outputText value="#{planification.prestataire}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">#{messages['intervention.field.planification.outcome']}</f:facet>
+								<h:outputText value="#{planification.outcome}" />
+							</rich:column>
+						</rich:dataTable></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</fieldset>
+
+	<fieldset>
+		<legend>#{messages['intervention.groupe.piecesjointes']}</legend>
+		<table>
+			<tbody>
+				<ui:repeat value="#{interventionDTO.intervention.piecesJointes}" var="doc">
+					<tr>
+						<td><h:commandLink styleClass="lien-document" immediate="true" target="_popup" value="#{doc.fileName}" action="#{documentHelper.download(doc)}">
+						<s:conversationId/>
+						</h:commandLink>
+						</td>
+					</tr>
+
+				</ui:repeat>
+			</tbody>
+		</table>
+	</fieldset>
+	
+	<fieldset>
+		<legend>#{messages['intervention.groupe.fichiers']}</legend>
+		<table>
+			<tbody>
+				<ui:repeat value="#{interventionDTO.intervention.fichiers}" var="doc">
+					<tr>
+						<td><h:commandLink styleClass="lien-document" immediate="true" target="_popup" value="#{doc.fileName}" action="#{documentHelper.download(doc)}">
+						<s:conversationId/>
+						</h:commandLink>
+						</td>
+					</tr>
+
+				</ui:repeat>
+			</tbody>
+		</table>
+	</fieldset>
+
+
+
+
+</ui:composition>

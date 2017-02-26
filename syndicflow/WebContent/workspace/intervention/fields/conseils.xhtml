@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+<a:outputPanel id="conseilsPanel">
+	
+			<s:decorate template="../../../layout/edit.xhtml" rendered="#{(intervention.isNew() or dialog) and not empty manager.conseils}">
+				<ui:define name="label">
+					<h:outputText value="#{messages['intervention.field.conseils']}" />
+				</ui:define>
+
+				<br />
+				<a:repeat value="#{manager.conseils}"
+					var="conseil">
+					<h:selectBooleanCheckbox value="#{conseil.selected}" />
+					<h:outputText value="#{conseil.account.nom}" /> (<h:outputText
+						value="#{conseil.account.email}" />)
+			<br />
+				</a:repeat>
+
+			</s:decorate>
+
+
+			<s:decorate template="../../../layout/edit.xhtml" rendered="#{(!intervention.isNew() and !dialog) and not empty manager.conseils}">
+				<ui:define name="label">
+					<h:outputText value="#{messages['intervention.field.conseils']}" />
+				</ui:define>
+
+				<br />
+				<a:repeat value="#{manager.conseils}"
+					var="conseil">
+					<h:selectBooleanCheckbox value="#{conseil.selected}">
+						<a:ajax event="change" queueId="#{conversation.id}"
+							execute="@this"
+							listener="#{manager.updateDemande(messages['intervention.field.conseils'])}"
+							render="messages" />
+					</h:selectBooleanCheckbox>
+					<h:outputText value="#{conseil.account.nom}" /> (<h:outputText
+						value="#{conseil.account.email}" />)
+			<br />
+				</a:repeat>
+
+			</s:decorate>
+
+</a:outputPanel>
+</ui:composition>

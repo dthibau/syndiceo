@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+
+	<s:decorate id="horairePlanification" styleClass="champ obligatoire" 
+		template="../../../layout/edit.xhtml">
+		<ui:define name="label">
+			<h:outputText value="#{messages['intervention.field.planification.horaire']}" />
+		</ui:define>
+		<h:selectOneMenu value="#{planification.horaire}" rendered="#{!edit}" >
+			<s:selectItems value="#{horaires}" var="horaire" 
+				label="#{horaire.nom}" noSelectionLabel="#{messages['noSelection.horaire']}" />
+			<s:convertEntity />
+		</h:selectOneMenu>
+		<h:selectOneMenu value="#{planification.horaire}" rendered="#{edit}">
+			<s:selectItems value="#{horaires}" var="horaire" 
+				label="#{horaire.nom}" noSelectionLabel="#{messages['noSelection.horaire']}" />
+			<s:convertEntity />
+			<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" 
+					listener="#{interventionManager.updateDemande(message['intervention.field.planification.horaire'])}"
+					render="horairePlanification,messages" >
+					</a4j:ajax>
+		</h:selectOneMenu>		
+	
+	</s:decorate>
+
+		<s:decorate id="horaireLibreDecoration"
+				styleClass="champ" template="../../../layout/edit.xhtml">
+				<ui:define name="label">
+					<h:outputText
+						value="#{messages['intervention.field.planification.horaireLibre']}" />
+				</ui:define>
+			<h:inputText value="#{planification.horaireLibre}"
+				rendered="#{!edit}">
+			</h:inputText>
+
+			<h:inputText id="horaireLibreInput" value="#{planification.horaireLibre}"
+				rendered="#{edit}">
+				<a4j:ajax event="change" queueId="#{conversation.id}" execute="@this" 
+					listener="#{interventionManager.updateDemande(messages['intervention.field.planification.horaireLibre'])}"
+					render="horaireLibreInput,horaireLibreDecoration,messages" >
+					</a4j:ajax>
+			</h:inputText>
+
+
+			</s:decorate>
+</ui:composition>

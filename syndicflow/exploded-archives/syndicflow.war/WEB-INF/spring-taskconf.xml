@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-init-method="init"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+					http://jboss.com/products/seam/spring-seam http://jboss.com/products/seam/spring-seam-2.2.xsd">
+
+
+	<bean id="springConf" class="com.syndiceo.proc.SpringConf">
+		<property name="taskConf">
+			<map>
+				<entry>
+					<key>
+						<value>DEPOT</value>
+					</key>
+					<ref bean="depotTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>UPDATE</value>
+					</key>
+					<ref bean="updateTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>CHECK</value>
+					</key>
+					<ref bean="checkTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>COMPLETE</value>
+					</key>
+					<ref bean="completeTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>CHECK_INTERVENTION</value>
+					</key>
+					<ref bean="checkInterventionTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>PLANIFY</value>
+					</key>
+					<ref bean="planifyTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>REPLANIFY</value>
+					</key>
+					<ref bean="replanifyTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>ODJ_AG</value>
+					</key>
+					<ref bean="odjAgTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>CANCEL</value>
+					</key>
+					<ref bean="cancelTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>MSG</value>
+					</key>
+					<ref bean="msgTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>INSCRIT</value>
+					</key>
+					<ref bean="inscritTask" />
+				</entry>				
+
+				<entry>
+					<key>
+						<value>AUTRE_DEPOT</value>
+					</key>
+					<ref bean="autreDepotTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>AUTRE_CANCEL</value>
+					</key>
+					<ref bean="autreCancelTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>AUTRE_CHECK</value>
+					</key>
+					<ref bean="autreCheckTask" />
+				</entry>
+				<entry>
+					<key>
+						<value>AUTRE_PRECISER</value>
+					</key>
+					<ref bean="autrePreciserTask" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<!-- Tasks -->
+	<bean id="depotTask" class="com.syndiceo.proc.TaskConf"
+		p:code="DEPOT" p:form="0">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="sendDemandeButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="updateTask" class="com.syndiceo.proc.TaskConf"
+		p:code="UPDATE" p:form="0">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="modifierButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="checkTask" class="com.syndiceo.proc.TaskConf"
+		p:code="CHECK" p:form="0">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="refuseButton" />
+				<ref bean="acceptPetitTravauxButton" />
+				<ref bean="acceptGrosTravauxButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="completeTask" class="com.syndiceo.proc.TaskConf"
+		p:code="COMPLETE" p:form="0">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="sendModifButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="checkInterventionTask" class="com.syndiceo.proc.TaskConf"
+		p:code="CHECK_INTERVENTION" p:form="1">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="acceptInterventionButton" />
+				<ref bean="refuseInterventionButton" />
+				<ref bean="requalifyGrosTravauxButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="planifyTask" class="com.syndiceo.proc.TaskConf"
+		p:code="PLANIFY" p:form="2">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="planifyButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="replanifyTask" class="com.syndiceo.proc.TaskConf"
+		p:code="REPLANIFY" p:form="2">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="replanifyButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="odjAgTask" class="com.syndiceo.proc.TaskConf"
+		p:code="ODJ_AG" p:form="3">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="odjButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="cancelTask" class="com.syndiceo.proc.TaskConf"
+		p:code="CANCEL" p:form="6">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="confirmCancelButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="msgTask" class="com.syndiceo.proc.TaskConf"
+		p:code="MSG">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="msgButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="inscritTask" class="com.syndiceo.proc.TaskConf"
+		p:code="INSCRIT">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="inscritButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="autreDepotTask" class="com.syndiceo.proc.TaskConf"
+		p:code="AUTRE_DEPOT" p:form="2">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="sendAutreDemandeButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="autrePreciserTask" class="com.syndiceo.proc.TaskConf"
+		p:code="AUTRE_PRECISER" p:form="2">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="modifierButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="autreCheckTask" class="com.syndiceo.proc.TaskConf"
+		p:code="AUTRE_CHECK" p:form="2">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="autrePreciserButton" />
+				<ref bean="autreRepondreButton" />
+			</list>
+		</property>
+	</bean>
+	<bean id="autreCancelTask" class="com.syndiceo.proc.TaskConf"
+		p:code="AUTRE_CANCEL" p:form="6">
+		<property name="buttonConfs">
+			<list>
+				<ref bean="confirmCancelButton" />
+			</list>
+		</property>
+	</bean>
+	<!-- Buttons -->
+	<bean id="saveButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="1" p:labelCode="action.save" />
+	<bean id="sendButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.send" />
+	<bean id="sendDemandeButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.send" p:notificationString="1">
+		<property name="defaultComment">
+		<value>Une demande d'intervention vous concernant a été déposée.
+
+Cordialement.</value>
+		</property>
+	</bean>
+	<bean id="sendAutreDemandeButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.send" p:notificationString="1">
+		<property name="defaultComment">
+		<value>Une demande d'information vous concernant a été déposée.
+
+Cordialement.</value>
+		</property>
+	</bean>
+	<bean id="modifierButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.modifier" p:dialogForm="1" p:notificationString="1">
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_depot</value>
+					</key>
+					<value>UPDATE</value>
+				</entry>
+				<entry>
+					<key>
+						<value>task.gestionnaire</value>
+					</key>
+					<value>DYNAMIC</value>
+				</entry>				
+			</map>
+		</property>	
+	</bean>
+	<bean id="refuseButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.refuse" p:dialogForm="1" p:notificationString="0">		
+		<property name="defaultComment">
+		<value>Nous avons pris connaissance de votre demande numéro
+« {0} » « {1} » du « {2} ».
+Pouvez-vous nous préciser ....</value>
+		</property>
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_depot</value>
+					</key>
+					<value>NOK</value>
+				</entry>
+				<entry>
+					<key>
+						<value>task.gestionnaire</value>
+					</key>
+					<value>DYNAMIC</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="acceptPetitTravauxButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.acceptPetit" p:dialogForm="0" p:notificationString="0">
+		<property name="defaultComment">
+		<value>Nous avons pris connaissance de votre demande numéro
+« {0} » « {1} » du « {2} ». 
+Nous mettons tout en oeuvre pour y répondre dans les meilleurs délais.</value>
+		</property>
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_depot</value>
+					</key>
+					<value>OK</value>
+				</entry>
+				<entry>
+					<key>
+						<value>type_travaux</value>
+					</key>
+					<value>PETIT</value>
+				</entry>
+				<entry>
+					<key>
+						<value>task.gestionnaire</value>
+					</key>
+					<value>DYNAMIC</value>
+				</entry>				
+			</map>
+		</property>
+	</bean>
+	<bean id="acceptGrosTravauxButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.acceptGros" p:dialogForm="0" p:notificationString="0">
+		<property name="defaultComment">
+		<value>Votre demande  « {0} » « {1} » du {2} nécessite une décision de l''assemblée générale des copropriétaires. 
+Votre demande sera portée à l''ordre du jour de la prochaine assemblée générale.</value>
+		</property>
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_depot</value>
+					</key>
+					<value>OK</value>
+				</entry>
+				<entry>
+					<key>
+						<value>type_travaux</value>
+					</key>
+					<value>GROS</value>
+				</entry>
+				<entry>
+					<key>
+						<value>task.gestionnaire</value>
+					</key>
+					<value>DYNAMIC</value>
+				</entry>				
+			</map>
+		</property>
+	</bean>
+	<bean id="sendModifButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.sendModif" p:dialogForm="1" p:notificationString="1">
+	</bean>
+
+
+
+
+	<bean id="planifyButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.planify" p:dialogForm="2" p:notificationString="0"/>
+	<bean id="replanifyButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.planify" p:dialogForm="2" p:notificationString="0"/>
+
+
+	<bean id="acceptInterventionButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.acceptIntervention" p:dialogForm="0" p:notificationString="0">
+		<property name="defaultComment">
+		<value>Votre demande « {0} » « {1} » du « {2} » est clôturée. </value>
+		</property>
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_intervention</value>
+					</key>
+					<value>OK</value>
+				</entry>
+
+			</map>
+		</property>
+	</bean>
+
+	<bean id="refuseInterventionButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.refuseIntervention" p:dialogForm="3" p:notificationString="0">
+		<property name="defaultComment">
+		<value>L''intervention n''a pas été correctement réalisée. 
+Elle sera replanifiée prochainement.
+</value>
+		</property>
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_intervention</value>
+					</key>
+					<value>NOK</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="requalifyGrosTravauxButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.acceptGros" p:dialogForm="0" p:notificationString="0">
+		<property name="defaultComment">
+		<value>Votre demande  « {0} » « {1} » du {2} nécessite une décision de l’'assemblée générale des copropriétaires. 
+Votre demande sera portée à l’'ordre du jour de la prochaine assemblée générale.</value>
+		</property>
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_intervention</value>
+					</key>
+					<value>GROS</value>
+				</entry>		
+			</map>
+		</property>
+	</bean>				
+
+	<bean id="odjButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.odj" p:dialogForm="3" p:notificationString="01">
+		<property name="defaultComment">
+		<value></value>
+		</property>
+		
+	</bean>
+
+	<bean id="confirmCancelButton" class="com.syndiceo.proc.TaskButtonConf" p:dialogForm="6" p:notificationString="1"
+		p:issue="2" p:labelCode="action.confirmCancel" />
+
+	<bean id="msgButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="3" p:labelCode="action.msg" p:dialogForm="6" p:notificationString="5" >
+		<property name="defaultComment">
+		<value></value>
+		</property>
+	</bean>	
+	
+	<bean id="inscritButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.inscrit" p:dialogForm="6" p:notificationString="0" >
+		<property name="defaultComment">
+		<value></value>
+		</property>
+	</bean>	
+	
+	<bean id="autreRepondreButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.repondre" p:dialogForm="6" p:notificationString="0">		
+		<property name="defaultComment">
+		<value></value>
+		</property>
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_depot</value>
+					</key>
+					<value>OK</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="autrePreciserButton" class="com.syndiceo.proc.TaskButtonConf"
+		p:issue="2" p:labelCode="action.refuse" p:dialogForm="6" p:notificationString="0">		
+		<property name="defaultComment">
+		<value>Nous avons pris connaissance de votre demande numéro
+« {0} » « {1} » du « {2} ».
+Pouvez-vous nous préciser ....</value>
+		</property>
+		<property name="results">
+			<map>
+				<entry>
+					<key>
+						<value>ret_depot</value>
+					</key>
+					<value>NOK</value>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

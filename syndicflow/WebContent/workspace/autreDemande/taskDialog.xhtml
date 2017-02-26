@@ -1,0 +1,82 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<s:decorate template="../../layout/dialog.xhtml">
+		<ui:param name="id" value="taskDialogPanel" />
+		<ui:param name="largeur"
+			value="#{taskButtonConfHelper.getLargeur(taskButtonConf)}" />
+		<ui:param name="hauteur"
+			value="#{taskButtonConfHelper.getHauteur(taskButtonConf)}" />
+
+		<ui:define name="titre">#{taskButtonConfHelper.getDialogTitle(taskButtonConf)}</ui:define>
+		<ui:define name="info">#{taskButtonConfHelper.getDialogInfo(taskButtonConf)}<br />
+		</ui:define>
+
+		<ui:define name="contenu">
+			<table width="100%">
+				<tr>
+					<td><a4j:outputPanel id="dialogContentPanel">
+							<a4j:outputPanel
+								rendered="#{taskButtonConf.dialogForm == DF_DEFAULT}">
+								<ui:include src="../intervention/dialogforms/default.xhtml">
+									<ui:param name="demande" value="#{demandeDTO.demande}" />
+									<ui:param name="requis" value="#{false}" />
+									<ui:param name="suffix" value="d" />
+								</ui:include>
+							</a4j:outputPanel>
+
+							<a4j:outputPanel
+								rendered="#{taskButtonConf.dialogForm == DF_COMMENT_REQUIRED}">
+								<ui:include src="../intervention/dialogforms/default.xhtml">
+									<ui:param name="demande" value="#{demandeDTO.demande}" />
+									<ui:param name="requis" value="#{true}" />
+									<ui:param name="suffix" value="r" />
+								</ui:include>
+							</a4j:outputPanel>
+
+
+
+						
+							<a4j:outputPanel
+								rendered="#{taskButtonConf.dialogForm == DF_MSG}">
+								<ui:include src="../intervention/dialogforms/msg.xhtml">
+									<ui:param name="demande" value="#{demandeDTO.demande}" />
+									<ui:param name="requis" value="#{true}" />
+									<ui:param name="suffix" value="a" />
+								</ui:include>
+							</a4j:outputPanel>
+						</a4j:outputPanel></td>
+				</tr>
+
+			</table>
+		</ui:define>
+		<ui:define name="buttons">
+			<a4j:outputPanel id="dialogButtonPanel">
+				<table width="100%">
+					<tr>
+						<td align="center"><a4j:commandButton
+								value="#{messages['action.cancel']}"
+								onclick="#{rich:component('taskDialogPanel')}.hide();return false;" />
+						</td>
+						<td><a4j:commandButton
+								value="#{messages['action.send']}"
+								action="#{autreDemandeManager.completeTask}"
+								render="dialogContentPanel">
+								<f:param name="cid" value="#{conversation.id}" />
+							</a4j:commandButton> </td>
+					</tr>
+				</table>
+
+			</a4j:outputPanel>
+		</ui:define>
+	</s:decorate>
+
+</ui:composition>

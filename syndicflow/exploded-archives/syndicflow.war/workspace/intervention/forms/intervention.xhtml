@@ -1,0 +1,59 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<table width="90%">
+		<tr>
+			<td valign="top">
+				<fieldset>
+					<legend>#{messages['intervention.groupe.description']}</legend>
+					<ui:include src="../fields/titre.xhtml" />
+					<ui:include src="../fields/immeuble.xhtml" />
+					<ui:include src="../fields/specialite.xhtml" />
+					<ui:include src="../fields/description.xhtml" />
+					<ui:include src="../fields/batiment.xhtml" />
+					<ui:include src="../fields/localisation.xhtml" />
+				</fieldset>
+				<fieldset>
+					<legend>#{messages['intervention.groupe.date']}</legend>
+					<ui:include src="../fields/dateSouhaitee.xhtml" />
+					<ui:include src="../fields/horaireSouhaitee.xhtml" />
+				</fieldset>
+				
+			</td>
+			<td valign="top">
+				<fieldset>
+					<legend>#{messages['intervention.groupe.contact']}</legend>
+					<ui:include src="../fields/contact.xhtml" />
+					<ui:include src="../fields/conseils.xhtml" >
+						<ui:param name="manager" value="#{manager}"/>
+					</ui:include>
+					<ui:include src="../fields/pourInfo.xhtml" />
+				</fieldset>
+				<fieldset>
+					<legend>#{messages['intervention.groupe.piecesjointes']}</legend>
+
+					<ui:include src="../fields/piecesjointes.xhtml" />
+
+				</fieldset>
+			</td>
+		</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+</ui:composition>

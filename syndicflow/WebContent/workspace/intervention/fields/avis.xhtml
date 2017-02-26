@@ -1,0 +1,35 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.org/schema/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+
+	<s:decorate id="autresDecoration_#{suffix}" styleClass="champ"
+		template="../../../layout/edit.xhtml">
+		<ui:define name="label">
+			<h:outputText value="#{messages['intervention.field.destinataires']}" />
+		</ui:define>
+
+		<rich:pickList value="#{interventionManager.event.destinataires}"
+			copyControlLabel="#{messages['pickList.copyLabel']}"
+			copyTitle="#{messages['pickList.copyTitle']}"
+			copyAllVisible="false"
+			removeControlLabel="#{messages['pickList.removeLabel']}"
+			removeTitle="#{messages['pickList.copyTitle']}"
+			removeAllVisible="false"
+			sourceListWidth="385"
+			targetListWidth="385">
+			<s:selectItems value="#{avis}" var="account"
+				label="#{account.categorieComplet}"></s:selectItems>
+			<s:convertEntity />
+			
+		</rich:pickList>
+
+	</s:decorate>
+
+</ui:composition>

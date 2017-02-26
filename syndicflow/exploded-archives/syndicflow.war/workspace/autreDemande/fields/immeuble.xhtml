@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:s="http://jboss.org/schema/seam/taglib">
+
+<div id="immeubleDecoration_sel">
+	<s:decorate id="immeubleDecoration" styleClass="champ obligatoire" 
+		template="../../../layout/edit.xhtml">
+		<ui:define name="label">
+			<h:outputText value="#{messages['demande.field.immeuble']}" />
+		</ui:define>
+		<a4j:outputPanel rendered="#{!loggedUser.is('r_admin')}">
+		<h:selectOneMenu value="#{autreDemande.immeuble}" required="true" rendered="#{autreDemande.isNew() and loggedUser.immeubles.size &gt; 1}">
+			<s:selectItems value="#{loggedUser.immeubles}" var="immeuble" 
+				label="#{immeuble}" noSelectionLabel="#{messages['noSelection.immeuble']}" />
+			<s:convertEntity />
+		</h:selectOneMenu>
+		<h:outputText value="#{autreDemande.immeuble}" rendered="#{!autreDemande.isNew() or loggedUser.immeubles.size == 1}"/>
+		</a4j:outputPanel>
+		<a4j:outputPanel rendered="#{loggedUser.is('r_admin')}">
+			<h:selectOneMenu value="#{autreDemande.immeuble}" required="true" rendered="#{autreDemande.isNew()}">
+				<s:selectItems value="#{immeubles}" var="immeuble" 
+					label="#{immeuble}" noSelectionLabel="#{messages['noSelection.immeuble']}" />
+				<s:convertEntity />
+			</h:selectOneMenu>
+			<h:outputText value="#{autreDemande.immeuble.numero}" rendered="#{!autreDemande.isNew()}"/>
+		</a4j:outputPanel>
+	
+	</s:decorate>
+</div>
+</ui:composition>

@@ -1,0 +1,7 @@
+<classpath>
+  <container id="syndicflow!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="/home/dthibau/Dev/Syndiceo/syndicflow/WebContent/WEB-INF/lib/jboss-seam.jar">
+      <source-attachment-path>/home/dthibau/Dev/outils/jboss-seam-2.3.0.Final/lib/src/jboss-seam-sources.jar</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

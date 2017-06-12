@@ -2,6 +2,7 @@
 .classpath
 .project
 .settings/
+.metadata/
 build/
 bin/
 
@@ -29,6 +30,7 @@ target/
 
 #jmeter
 *.jtl
+*.class
 
 #jasper
 *.jasper

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><entities>
+	<entity>
+		<entity-name>com.syndiceo.model.Account</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>228</entity-height>
+		<entity-X-Coordinate>217</entity-X-Coordinate>
+		<entity-Y-Coordinate>137</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.model.Affectation</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>148</entity-height>
+		<entity-X-Coordinate>42</entity-X-Coordinate>
+		<entity-Y-Coordinate>31</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.model.Role</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>32</entity-height>
+		<entity-X-Coordinate>252</entity-X-Coordinate>
+		<entity-Y-Coordinate>40</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.model.AutreDemande</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>90</entity-height>
+		<entity-X-Coordinate>217</entity-X-Coordinate>
+		<entity-Y-Coordinate>697</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.model.Demande</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>406</entity-height>
+		<entity-X-Coordinate>400</entity-X-Coordinate>
+		<entity-Y-Coordinate>371</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.model.Critere</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>108</entity-height>
+		<entity-X-Coordinate>68</entity-X-Coordinate>
+		<entity-Y-Coordinate>737</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.proc.model.DirectTask</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>70</entity-height>
+		<entity-X-Coordinate>1200</entity-X-Coordinate>
+		<entity-Y-Coordinate>570</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.model.Event</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>30</entity-height>
+		<entity-X-Coordinate>42</entity-X-Coordinate>
+		<entity-Y-Coordinate>420</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.proc.model.LongTask</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>32</entity-height>
+		<entity-X-Coordinate>1300</entity-X-Coordinate>
+		<entity-Y-Coordinate>347</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.proc.model.LongTaskWithMessage</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>70</entity-height>
+		<entity-X-Coordinate>1319</entity-X-Coordinate>
+		<entity-Y-Coordinate>178</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.model.OrganizationalEntity</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>108</entity-height>
+		<entity-X-Coordinate>550</entity-X-Coordinate>
+		<entity-Y-Coordinate>86</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+
+	<entity>
+		<entity-name>com.syndiceo.proc.model.Task</entity-name>
+		<entity-width>120</entity-width>
+		<entity-height>306</entity-height>
+		<entity-X-Coordinate>840</entity-X-Coordinate>
+		<entity-Y-Coordinate>244</entity-Y-Coordinate>
+		<primary-collapsed>false</primary-collapsed>
+		<relation-collapsed>false</relation-collapsed>
+		<basic-collapsed>false</basic-collapsed>
+	</entity>
+</entities>

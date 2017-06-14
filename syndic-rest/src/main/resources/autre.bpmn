@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_top_idItem" structureRef="Integer" />
+  <itemDefinition id="_gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_demandeurItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_ret_depotItem" structureRef="String" />
+
+  <itemDefinition id="_39-top_idItem" structureRef="Integer" />
+  <itemDefinition id="_39-gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_39-demandeurItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_39-immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_39-ret_depotItem" structureRef="String" />
+
+  <itemDefinition id="_42-top_idItem" structureRef="Integer" />
+  <itemDefinition id="_42-gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_42-demandeurItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_42-immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_42-ret_depotItem" structureRef="String" />
+
+  <itemDefinition id="_41-top_idItem" structureRef="Integer" />
+  <itemDefinition id="_41-gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_41-demandeurItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_41-immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_41-ret_depotItem" structureRef="String" />
+
+  <itemDefinition id="_31-top_idItem" structureRef="Integer" />
+  <itemDefinition id="_31-gestionnaireItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_31-demandeurItem" structureRef="com.syndiceo.model.Account" />
+  <itemDefinition id="_31-immeubleItem" structureRef="com.syndiceo.model.Immeuble" />
+  <itemDefinition id="_31-ret_depotItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="autre" name="Autre" >
+
+    <!-- process variables -->
+    <property id="top_id" itemSubjectRef="_top_idItem"/>
+    <property id="gestionnaire" itemSubjectRef="_gestionnaireItem"/>
+    <property id="demandeur" itemSubjectRef="_demandeurItem"/>
+    <property id="immeuble" itemSubjectRef="_immeubleItem"/>
+    <property id="ret_depot" itemSubjectRef="_ret_depotItem"/>
+
+    <!-- nodes -->
+    <endEvent id="_16" name="Annuler" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <startEvent id="_1" name="StartProcess" />
+    <endEvent id="_35" name="CLOTURE" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <exclusiveGateway id="_38" name="XOR" gatewayDirection="Converging" />
+    <userTask id="_39" name="Preciser" >
+      <ioSpecification>
+        <dataInput id="_39_TaskNameInput" name="TaskName" />
+        <inputSet>
+          <dataInputRefs>_39_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_39_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">AUTRE_PRECISER</from>
+          <to xsi:type="tFormalExpression">_39_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>#{demandeur.id}</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <userTask id="_42" name="Verifier" >
+      <ioSpecification>
+        <dataInput id="_42_TaskNameInput" name="TaskName" />
+        <dataInput id="_42_GroupIdInput" name="GroupId" />
+        <dataOutput id="_42_ret_depotOutput" name="ret_depot" />
+        <inputSet>
+          <dataInputRefs>_42_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_42_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_42_ret_depotOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_42_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">AUTRE_CHECK</from>
+          <to xsi:type="tFormalExpression">_42_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_42_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">r_admin</from>
+          <to xsi:type="tFormalExpression">_42_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_42_ret_depotOutput</sourceRef>
+        <targetRef>ret_depot</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>#{gestionnaire.id}</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <exclusiveGateway id="_43" name="XOR_CHECK" gatewayDirection="Diverging" />
+    <parallelGateway id="_40" name="AND1" gatewayDirection="Diverging" />
+    <userTask id="_41" name="Annulation" >
+      <ioSpecification>
+        <dataInput id="_41_TaskNameInput" name="TaskName" />
+        <dataInput id="_41_GroupIdInput" name="GroupId" />
+        <dataInput id="_41_PriorityInput" name="Priority" />
+        <inputSet>
+          <dataInputRefs>_41_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_41_GroupIdInput</dataInputRefs>
+          <dataInputRefs>_41_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_41_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">AUTRE_CANCEL</from>
+          <to xsi:type="tFormalExpression">_41_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_41_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">r_admin</from>
+          <to xsi:type="tFormalExpression">_41_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_41_PriorityInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">1</from>
+          <to xsi:type="tFormalExpression">_41_PriorityInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>#{demandeur.id}</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <userTask id="_31" name="Deposer demande" >
+      <extensionElements>
+        <tns:onEntry-script>
+          <script>kcontext.setVariable("top_id",kcontext.getProcessInstance().getId());</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_31_TaskNameInput" name="TaskName" />
+        <dataInput id="_31_GroupIdInput" name="GroupId" />
+        <dataOutput id="_31_gestionnaireOutput" name="gestionnaire" />
+        <dataOutput id="_31_immeubleOutput" name="immeuble" />
+        <dataOutput id="_31_demandeurOutput" name="demandeur" />
+        <inputSet>
+          <dataInputRefs>_31_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_31_GroupIdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_31_gestionnaireOutput</dataOutputRefs>
+          <dataOutputRefs>_31_immeubleOutput</dataOutputRefs>
+          <dataOutputRefs>_31_demandeurOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_31_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">AUTRE_DEPOT</from>
+          <to xsi:type="tFormalExpression">_31_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_31_GroupIdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">r_conseil,r_copro,r_gestionnaire,r_admin</from>
+          <to xsi:type="tFormalExpression">_31_GroupIdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_31_gestionnaireOutput</sourceRef>
+        <targetRef>gestionnaire</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_31_immeubleOutput</sourceRef>
+        <targetRef>immeuble</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_31_demandeurOutput</sourceRef>
+        <targetRef>demandeur</targetRef>
+      </dataOutputAssociation>
+    </userTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_41-_16" sourceRef="_41" targetRef="_16" />
+    <sequenceFlow id="_43-_35" sourceRef="_43" targetRef="_35" name="REPONDUE" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return ret_depot.equals("OK");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_39-_38" sourceRef="_39" targetRef="_38" />
+    <sequenceFlow id="_40-_38" sourceRef="_40" targetRef="_38" />
+    <sequenceFlow id="_43-_39" sourceRef="_43" targetRef="_39" name="PRECISION" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return !ret_depot.equals("OK");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_38-_42" sourceRef="_38" targetRef="_42" />
+    <sequenceFlow id="_42-_43" sourceRef="_42" targetRef="_43" />
+    <sequenceFlow id="_31-_40" sourceRef="_31" targetRef="_40" />
+    <sequenceFlow id="_40-_41" sourceRef="_40" targetRef="_41" />
+    <sequenceFlow id="_1-_31" sourceRef="_1" targetRef="_31" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="autre" >
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="760" y="24" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="37" y="21" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="762" y="131" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_38" >
+        <dc:Bounds x="186" y="126" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_39" >
+        <dc:Bounds x="406" y="262" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42" >
+        <dc:Bounds x="407" y="130" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_43" >
+        <dc:Bounds x="604" y="131" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_40" >
+        <dc:Bounds x="390" y="22" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_41" >
+        <dc:Bounds x="544" y="21" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="124" y="23" width="170" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_41-_16" >
+        <di:waypoint x="594" y="45" />
+        <di:waypoint x="784" y="48" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_43-_35" >
+        <di:waypoint x="628" y="155" />
+        <di:waypoint x="786" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_39-_38" >
+        <di:waypoint x="456" y="286" />
+        <di:waypoint x="210" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_40-_38" >
+        <di:waypoint x="414" y="46" />
+        <di:waypoint x="210" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_43-_39" >
+        <di:waypoint x="628" y="155" />
+        <di:waypoint x="456" y="286" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_38-_42" >
+        <di:waypoint x="210" y="150" />
+        <di:waypoint x="457" y="154" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-_43" >
+        <di:waypoint x="457" y="154" />
+        <di:waypoint x="628" y="155" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_31-_40" >
+        <di:waypoint x="209" y="47" />
+        <di:waypoint x="414" y="46" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_40-_41" >
+        <di:waypoint x="414" y="46" />
+        <di:waypoint x="594" y="45" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_31" >
+        <di:waypoint x="61" y="45" />
+        <di:waypoint x="209" y="47" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

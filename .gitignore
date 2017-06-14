@@ -6,6 +6,9 @@
 build/
 bin/
 
+#Seam
+syndicflow/WebContent/WEB-INF/dev/
+
 # JMeter
 *.log
 jmeter/apache-jmeter-2.11/docs/
@@ -34,3 +37,6 @@ target/
 
 #jasper
 *.jasper
+
+.recommenders/
+Servers/

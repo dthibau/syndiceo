@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.hibernate.Hibernate;
@@ -15,23 +16,13 @@ import com.syndiceo.model.Immeuble;
 import com.syndiceo.model.Intervention;
 
 public class InterventionDao {
+	@PersistenceContext
 	private EntityManager entityManager;
 
 	public InterventionDao() {
 		super();
 	}
 
-	public InterventionDao(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
-
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
 
 	public Intervention fullLoad(Long id) {
 		Query q = entityManager

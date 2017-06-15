@@ -13,6 +13,7 @@ import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Observer;
 import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
+import org.jboss.seam.annotations.security.Restrict;
 
 import com.syndiceo.dto.DemandeDTO;
 import com.syndiceo.dto.DemandeSorter;
@@ -21,8 +22,7 @@ import com.syndiceo.model.Immeuble;
 import com.syndiceo.service.TaskService;
 import com.syndiceo.util.Util;
 
-@Name("interventionsManager")
-@Scope(ScopeType.CONVERSATION)
+
 public class InterventionsManager implements Serializable {
 
 	/**

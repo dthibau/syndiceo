@@ -3,7 +3,10 @@ package com.syndiceo.proc.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.syndiceo.model.Account;
 import com.syndiceo.model.dao.OrganizationalEntityDao;
@@ -14,17 +17,12 @@ import com.syndiceo.proc.model.Task;
 
 public class TaskDaoImpl implements TaskDao {
 
+	@Autowired
 	JbpmHelper jbpmHelper;
 
+	@PersistenceContext
 	EntityManager entityManager;
 
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
 
 	public JbpmHelper getJbpmHelper() {
 		return jbpmHelper;

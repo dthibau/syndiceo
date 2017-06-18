@@ -15,6 +15,8 @@ import javax.persistence.Transient;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @DiscriminatorValue("Account")
 public class Account extends OrganizationalEntity  implements Serializable
@@ -31,6 +33,7 @@ public class Account extends OrganizationalEntity  implements Serializable
     @Length(min=10)
     private String telephone;
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="account")
+	@JsonBackReference
     private List<Affectation> affectations = new ArrayList<Affectation>();
 
     public Account() {
@@ -78,6 +81,7 @@ public class Account extends OrganizationalEntity  implements Serializable
 		affectations.add(affectation);
 	}
 	@Transient 
+	@JsonBackReference
 	public Set<Immeuble> getImmeublesActeur() {
 		Set<Immeuble> ret = new HashSet<Immeuble>();
 		for ( Affectation affectation : getAffectations() ) {
@@ -88,6 +92,7 @@ public class Account extends OrganizationalEntity  implements Serializable
 		return ret;
 	}
 	@Transient 
+	@JsonBackReference
 	public Set<Immeuble> getImmeubles() {
 		Set<Immeuble> ret = new HashSet<Immeuble>();
 		for ( Affectation affectation : getAffectations() ) {

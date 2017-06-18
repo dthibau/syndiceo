@@ -6,10 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class PieceJointe extends Fichier {
 
 	@ManyToOne
+	@JsonManagedReference
 	protected Demande demande;
 	
 	public PieceJointe() {

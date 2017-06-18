@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Affectation implements Serializable {
 
@@ -19,6 +21,7 @@ public class Affectation implements Serializable {
 	@Id @GeneratedValue
 	private long id;
 	@ManyToOne
+	@JsonManagedReference
 	private Account account;
 	@ManyToOne
 	private Role role;

@@ -16,6 +16,9 @@ import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Email;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @DiscriminatorValue(value="Intervention")
 public class Intervention extends Demande implements Serializable {
@@ -27,6 +30,7 @@ public class Intervention extends Demande implements Serializable {
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="intervention")
 	@OrderBy("date DESC")
+	@JsonBackReference
 	List<Planification> planifications = new ArrayList<Planification>();
 	
 	private String batiment;
@@ -139,6 +143,7 @@ public class Intervention extends Demande implements Serializable {
 		planifications.add(planification);
 	}
 	@Transient
+	@JsonIgnore
 	public Planification getLastPlanification() {
 		if ( !getPlanifications().isEmpty() )
 			return getPlanifications().get(0);

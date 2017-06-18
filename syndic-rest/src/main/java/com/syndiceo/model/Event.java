@@ -19,6 +19,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Event implements Serializable {
 
@@ -44,6 +46,7 @@ public class Event implements Serializable {
 	@Length(max=10000)
 	private String comment;
 	@ManyToOne
+	@JsonManagedReference
 	private Demande demande;
 	
 	@OneToMany(cascade=CascadeType.ALL)

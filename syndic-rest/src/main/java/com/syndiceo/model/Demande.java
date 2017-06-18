@@ -19,6 +19,9 @@ import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class Demande implements Serializable {
@@ -45,8 +48,10 @@ public abstract class Demande implements Serializable {
 	private Immeuble immeuble;	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="demande")
 	@OrderBy("timestamp DESC")
+	@JsonBackReference
 	List<Event> events = new ArrayList<Event>();
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="demande")
+	@JsonBackReference
 	List<PieceJointe> piecesJointes = new ArrayList<PieceJointe>();	
 
 	private String titre;
@@ -116,6 +121,7 @@ public abstract class Demande implements Serializable {
 		event.setDemande(this);
 	}
 	@Transient
+	@JsonIgnore
 	public List<FichierEvent> getFichiers() {
 		List<FichierEvent> ret = new ArrayList<FichierEvent>();
 		
@@ -125,6 +131,7 @@ public abstract class Demande implements Serializable {
 		return ret;
 	}
 	@Transient
+	@JsonIgnore
 	public Event getLastMessage() {
 		return getEvents().size() > 0 ? getEvents().get(0) : null;
 	}

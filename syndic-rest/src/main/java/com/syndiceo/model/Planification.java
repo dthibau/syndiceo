@@ -11,12 +11,15 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Planification {
 
 	@Id @GeneratedValue
 	private long id;
 	@ManyToOne
+	@JsonManagedReference
 	private Intervention intervention;
 	@Temporal(TemporalType.DATE)
 	private Date date;

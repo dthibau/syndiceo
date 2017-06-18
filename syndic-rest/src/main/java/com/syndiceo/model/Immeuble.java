@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Immeuble implements Serializable {
 
@@ -21,6 +23,7 @@ public class Immeuble implements Serializable {
 	private int noIntervention;
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JsonManagedReference
 	private Account gestionnaire;
 	
 

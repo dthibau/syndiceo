@@ -1,0 +1,15 @@
+version: '2'
+services:
+  base:
+    build: ./postgres/
+    networks:
+     - back
+  syndic-rest:
+    build: ./syndic-rest/
+    networks:
+     - back
+    ports:
+     - "81:8080"
+
+networks:
+  back:

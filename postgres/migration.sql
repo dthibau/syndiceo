@@ -52,10 +52,18 @@ alter table task rename column processinstanceid to process_instance_id;
 alter table task rename column subprocessinstanceid to sub_process_instance_id;
 alter table task rename column workitemid to work_item_id;
 
-alter table work_item_info rename column workitemid to work_item_id;;
+alter table work_item_info rename column workitemid to work_item_id;
 alter table work_item_info rename column creationdate to creation_date;
 alter table work_item_info rename column processinstanceid to process_instance_id;
 alter table work_item_info rename column workitembytearray to work_item_byte_array;
+
+alter table process_instance_info rename column instanceid to instance_id;
+alter table process_instance_info rename column lastmodificationdate to last_modification_date;
+alter table process_instance_info rename column lastreaddate to last_read_date;
+alter table process_instance_info rename column processid to process_id;
+alter table process_instance_info rename column processinstancebytearray to process_instance_byte_array;
+alter table process_instance_info rename column startdate to start_date;
+
 
  
 

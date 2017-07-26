@@ -1,0 +1,38 @@
+<div class="col-md-5">
+	<div class="haut-droite">
+
+		<div class="radio">
+			<div style="float: left; margin-right: 10px">
+				<label>
+				<input type="radio" name="true">oui
+			</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="false">non
+			</label>
+			</div>
+		</div>
+		<div class="checkbox">
+			<label>
+			<input type="checkbox" value="">Je suis le contact pour cette
+				intervention
+		</label>
+		</div>
+		<article>
+			<p>nom {{civilite}} {{nom}}</p>
+			<p>Email {{mail}}</p>
+			<p>Téléphone {{telephone}}</p>
+			<p>Emails à mettre en copie</p>
+			<p>
+				<input type="email" name="email1" class="form-control" [(ngModel)]="mailCopy1" />
+			</p>
+			<p>
+				<input type="email" name="email2" class="form-control" [(ngModel)]="mailCopy2" />
+			</p>
+			<p>
+				<input type="email" name="email3" class="form-control" [(ngModel)]="mailCopy3" />
+			</p>
+		</article>
+	</div>
+</div>

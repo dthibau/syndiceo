@@ -1,0 +1,57 @@
+<h1>demande information</h1>
+<form id="demandeInformation" method="post" class="demandeInformation">
+  <div class="row ">
+    <div class="col-md-6 ">
+
+
+      <div class="form-group">
+        <label for="Objet">Objet*:</label>
+        <input type="text" class="form-control" id="Objet" [(ngModel)]="objet">
+      </div>
+      <div class="form-group">
+        <label for="Immeuble">Immeuble*:</label>
+        <select class="form-control" [(ngModel)]="immeuble">
+				<option selected="selected">Sélectionner un immeuble</option>
+				<option value="0">9992, 2 rue Test</option>
+				<option value="1">9991, 41 BD DE CRETEIL</option>
+			</select>
+      </div>
+      <div class="form-group">
+        <label for="Domaine">Domaine*:</label>
+        <select class="form-control" id="Domaine" [(ngModel)]="domaine">
+				<option selected="selected">Sélectionner un domaine</option>
+				<option value="2">Ascenseur</option>
+				<option value="3">Eau</option>
+				<option value="4">Electricité</option>
+				<option value="5">Ménage</option>
+				<option value="6">Boite à lettres</option>
+				<option value="7">Elèments décoration</option>
+				<option value="8">Sécurité</option>
+				<option value="9">Ouvertures (portes / fenêtre)</option>
+				<option value="10">Toiture</option>
+				<option value="11">Chauffage</option>
+				<option value="12">Gaz</option>
+				<option value="13">Désenfumage</option>
+				<option value="14">Désinfection/Désinsectisation</option>
+				<option value="15">Maçonnerie/Gros œuvre</option>
+				<option value="16">Jardin/Espaces verts</option>
+				<option value="17">Entretien piscine</option>
+				<option value="18">Diagnostics</option>
+				<option value="19">Autres</option>
+			</select>
+      </div>
+      <div class="form-group">
+        <label for="Description">Description:</label>
+        <textarea class="form-control" rows="5" id="Description" [(ngModel)]="description"></textarea>
+      </div>
+      <app-piece-jointe></app-piece-jointe>
+
+    <div class="form-group">
+      <div>
+        <button type="submit" class="btn btn-default" nampe="deamndeInforamtion">Déposer une demande d'information</button>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</form>

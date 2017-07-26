@@ -1,0 +1,73 @@
+<div class="col-md-6 ">
+  <div class="row boost">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="Objet">Objet*:</label>
+        <input type="text" class="form-control" id="Objet" [(ngModel)]="objet">
+      </div>
+      <div class="form-group">
+        <label for="Immeuble">Immeuble*:</label>
+        <select class="form-control" [(ngModel)]="immeuble">
+				<option selected="selected">Sélectionner un immeuble</option>
+				<option value="0">9992, 2 rue Test</option>
+				<option value="1">9991, 41 BD DE CRETEIL</option>
+			</select>
+      </div>
+      <div class="form-group">
+        <label for="Domaine">Domaine*:</label>
+        <select class="form-control" id="Domaine" [(ngModel)]="domaine">
+				<option selected="selected">Sélectionner un domaine</option>
+				<option value="2">Ascenseur</option>
+				<option value="3">Eau</option>
+				<option value="4">Electricité</option>
+				<option value="5">Ménage</option>
+				<option value="6">Boite à lettres</option>
+				<option value="7">Elèments décoration</option>
+				<option value="8">Sécurité</option>
+				<option value="9">Ouvertures (portes / fenêtre)</option>
+				<option value="10">Toiture</option>
+				<option value="11">Chauffage</option>
+				<option value="12">Gaz</option>
+				<option value="13">Désenfumage</option>
+				<option value="14">Désinfection/Désinsectisation</option>
+				<option value="15">Maçonnerie/Gros œuvre</option>
+				<option value="16">Jardin/Espaces verts</option>
+				<option value="17">Entretien piscine</option>
+				<option value="18">Diagnostics</option>
+				<option value="19">Autres</option>
+			</select>
+      </div>
+      <div class="form-group">
+        <label for="Description">Description:</label>
+        <textarea class="form-control" rows="5" id="Description" [(ngModel)]="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="Batiment">Batiment:</label>
+        <input type="text" class="form-control" id="Batiment" [(ngModel)]="batiment">
+      </div>
+      <div class="form-group">
+        <label for="Localisation">Localisation:</label>
+        <select class="form-control" id="Localisation" [(ngModel)]="localisation">
+				<option selected="selected">Sélectionner une localisation</option>
+				<option value="20">loge concierge</option>
+				<option value="21">escalier</option>
+				<option value="22">palier</option>
+				<option value="23">sous-sol</option>
+				<option value="24">RDC</option>
+				<option value="25">Etage 1</option>
+				<option value="26">Etage 2</option>
+				<option value="27">Etage 3</option>
+				<option value="28">Etage 4</option>
+				<option value="29">Etage 5</option>
+				<option value="30">Etage 6</option>
+				<option value="31">Etages supérieurs</option>
+				<option value="32">cave</option>
+				<option value="33">parking intérieur</option>
+				<option value="34">parking extérieur</option>
+				<option value="35">vide ordure</option>
+				<option value="36">local vélo</option>
+				<option value="37">autre local</option>
+			</select>
+      </div>
+    </div>
+  </div>

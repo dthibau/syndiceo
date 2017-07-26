@@ -1,0 +1,70 @@
+<!-- autiliser pour le binding lors de l'ajout des directives
+      <tr>
+      <th>
+        {{numero}}
+      </th>
+      <th>
+        {{objet}}
+      </th>
+      <th>
+        {{dateCreation}}
+      </th>
+      <th>
+        {{domaine}}
+      </th>
+      <th>
+        {{demandeur}}
+      </th>
+	  <th>
+		{{dateIntervention}}
+	  </th>
+      <th>
+        {{immeuble}}
+      </th>
+      <th>
+        {{status}}
+      </th>
+    </tr>-->
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				N°
+			</th>
+			<th>
+				Objet
+			</th>
+			<th>
+				Date de création
+			</th>
+			<th>
+				Domaine
+			</th>
+			<th>
+				Demandeur
+			</th>
+			<th>
+				date d'intervention
+			</th>
+			<th>
+				immeuble
+			</th>
+			<th>
+				Status
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let ligne of lignes">
+			<td>{{ligne.numero}}</td>
+			<td>{{ligne.objet}}</td>
+			<td>{{ligne.dateCreation}}</td>
+			<td>{{ligne.domaine}}</td>
+			<td>{{ligne.demandeur}}</td>
+			<td>{{ligne.dateIntervention}}</td>
+			<td>{{ligne.immeuble}}</td>
+			<td>{{ligne.status}}</td>
+		</tr>
+	</tbody>
+</table>

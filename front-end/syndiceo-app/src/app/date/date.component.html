@@ -1,0 +1,14 @@
+<div class="form-group">
+	<label for="date">date souhaitée:</label>
+	<div class="input-group input-append date">
+		<input type="date" class="form-control" name="date" [(ngModel)]="dateInfo" />
+		<span class="input-group-addon add-on">
+			<span class="glyphicon glyphicon-calendar"></span>
+		</span>
+	</div>
+</div>
+
+<!-- test affichage date {{dateInfo | date: 'dd/MM/yyyy'}} -->
+
+<!--la date est binder mais sera afficher au format anglais, pour que l'affichage ce face 
+ au bon format il faut utiliser le pipe suivant {{dateInfo | date: 'dd/MM/yyyy'}} -->

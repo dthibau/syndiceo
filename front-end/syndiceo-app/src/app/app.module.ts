@@ -31,6 +31,15 @@ import { TableauLigneComponent } from './tableau-ligne/tableau-ligne.component';
 import { ModalAccessDeniedComponent } from './modal-access-denied/modal-access-denied.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ModalSuccessComponent } from './modal-success/modal-success.component';
+import { InformationArchiveComponent } from './information-archive/information-archive.component';
+import { DetailInterventionComponent } from './detail-intervention/detail-intervention.component';
+import { DetailInformationComponent } from './detail-information/detail-information.component';
+import { FenetreActionComponent } from './fenetre-action/fenetre-action.component';
+import { DetailInformationHistoriqueComponent } from './detail-information-historique/detail-information-historique.component';
+import { MenuDetailInformationComponent } from './menu-detail-information/menu-detail-information.component';
+import { DetailInterventionInformationComponent } from './detail-intervention-information/detail-intervention-information.component';
+import { DetailInterventionHistoriqueComponent } from './detail-intervention-historique/detail-intervention-historique.component';
+import { MenuDetailInterventionComponent } from './menu-detail-intervention/menu-detail-intervention.component';
 
 const appRoutes: Routes =[
   { path: 'depot-demande-intervention', component: DepotDemandeInterventionComponent },
@@ -38,7 +47,13 @@ const appRoutes: Routes =[
   { path: 'intervention-ag', component: InterventionAGComponent },
   { path: 'intervention-archive', component: InterventionArchiveComponent },
   { path: 'depot-demander-information', component: DepotDemandeInformationComponent },
-  { path: 'information-en-cours', component: InformationEnCoursComponent }
+  { path: 'information-en-cours', component: InformationEnCoursComponent },
+  { path: 'information-archive', component: InformationArchiveComponent },
+  { path: 'detail-information', component: DetailInformationComponent},
+  { path: 'detail-information-historique', component: DetailInformationHistoriqueComponent},
+  { path: 'detail-intervention', component: DetailInterventionComponent},
+  { path: 'detail-intervention-information', component: DetailInterventionInformationComponent},
+  { path: 'detail-intervention-historique', component: DetailInterventionHistoriqueComponent}
 ];
 
 @NgModule({
@@ -69,7 +84,16 @@ const appRoutes: Routes =[
     TableauLigneComponent,
     ModalAccessDeniedComponent,
     NotFoundComponent,
-    ModalSuccessComponent
+    ModalSuccessComponent,
+    InformationArchiveComponent,
+    DetailInterventionComponent,
+    DetailInformationComponent,
+    FenetreActionComponent,
+    DetailInformationHistoriqueComponent,
+    MenuDetailInformationComponent,
+    DetailInterventionInformationComponent,
+    DetailInterventionHistoriqueComponent,
+    MenuDetailInterventionComponent
   ],
   imports: [
     BrowserModule,

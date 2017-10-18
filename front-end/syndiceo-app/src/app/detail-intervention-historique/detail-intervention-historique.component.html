@@ -1,0 +1,14 @@
+<app-menu-detail-intervention></app-menu-detail-intervention>
+
+<form>
+  <!-- faire une liste ngfor !-->
+  <fieldset>
+    <legend> </legend>
+    <label> {{date}} </label>
+    <label> {{objet}} </label><br />
+    <label> {{emetteur}} </label><br />
+    <label> {{recepteur}} </label><br />
+    <label> {{statut}} </label><br />
+  </fieldset><br />
+<button (click)="onLoadPage()" type="button" class="btn btn-success">Envoyer un message</button>
+</form>

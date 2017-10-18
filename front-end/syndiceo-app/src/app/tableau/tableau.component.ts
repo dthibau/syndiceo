@@ -28,8 +28,6 @@ export class TableauComponent implements OnInit {
     this.lignes.push(this.ligne);
     this.lignes.push(this.ligne);
     this.lignes.push(this.ligne);
-
-
   }
 
   ngOnInit() {

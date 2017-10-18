@@ -1,13 +1,15 @@
 <div class="col-md-6 ">
   <div class="row boost">
     <div class="col-md-6">
+			<fieldset>
+				<legend>Description de la demande</legend>
       <div class="form-group">
         <label for="Objet">Objet*:</label>
-        <input type="text" class="form-control" id="Objet" [(ngModel)]="objet">
+        <input type="text" class="form-control" id="Objet" [(ngModel)]="objet" name="objet">
       </div>
       <div class="form-group">
         <label for="Immeuble">Immeuble*:</label>
-        <select class="form-control" [(ngModel)]="immeuble">
+        <select class="form-control" [(ngModel)]="immeuble" name="immeuble">
 				<option selected="selected">Sélectionner un immeuble</option>
 				<option value="0">9992, 2 rue Test</option>
 				<option value="1">9991, 41 BD DE CRETEIL</option>
@@ -15,7 +17,7 @@
       </div>
       <div class="form-group">
         <label for="Domaine">Domaine*:</label>
-        <select class="form-control" id="Domaine" [(ngModel)]="domaine">
+        <select class="form-control" id="Domaine" [(ngModel)]="domaine" name="domaine">
 				<option selected="selected">Sélectionner un domaine</option>
 				<option value="2">Ascenseur</option>
 				<option value="3">Eau</option>
@@ -39,15 +41,15 @@
       </div>
       <div class="form-group">
         <label for="Description">Description:</label>
-        <textarea class="form-control" rows="5" id="Description" [(ngModel)]="description"></textarea>
+        <textarea class="form-control" rows="5" id="Description" [(ngModel)]="description" name="description"></textarea>
       </div>
       <div class="form-group">
         <label for="Batiment">Batiment:</label>
-        <input type="text" class="form-control" id="Batiment" [(ngModel)]="batiment">
+        <input type="text" class="form-control" id="Batiment" [(ngModel)]="batiment" name="batiment">
       </div>
       <div class="form-group">
         <label for="Localisation">Localisation:</label>
-        <select class="form-control" id="Localisation" [(ngModel)]="localisation">
+        <select class="form-control" id="Localisation" [(ngModel)]="localisation" name="localisation">
 				<option selected="selected">Sélectionner une localisation</option>
 				<option value="20">loge concierge</option>
 				<option value="21">escalier</option>
@@ -69,5 +71,6 @@
 				<option value="37">autre local</option>
 			</select>
       </div>
+</fieldset>
     </div>
   </div>

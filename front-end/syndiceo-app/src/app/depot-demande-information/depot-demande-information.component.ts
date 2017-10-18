@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./depot-demande-information.component.css']
 })
 export class DepotDemandeInformationComponent implements OnInit {
-
+  objet;
+  immeuble;
+  domaine;
+  description="";
+  
   constructor() { }
 
   ngOnInit() {

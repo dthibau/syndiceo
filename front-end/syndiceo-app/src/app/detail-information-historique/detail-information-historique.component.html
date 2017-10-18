@@ -1,0 +1,13 @@
+
+<app-menu-detail-information></app-menu-detail-information>
+
+<form >
+  <label>{{date}} </label><br />
+  <label>{{objet}} </label><br />
+  <label>{{emetteur}}</label><br />
+  <label>envoyer a : {{recepteur}}</label><br />
+  <p>{{message}} <br /> {{signature}}</p>
+
+  <input (click)="onLoadPage()" class="btn btn-primary" type="submit" value="Submit">
+
+</form>

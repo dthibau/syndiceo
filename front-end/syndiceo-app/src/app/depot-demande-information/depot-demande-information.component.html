@@ -3,14 +3,14 @@
   <div class="row ">
     <div class="col-md-6 ">
 
-
+{{objet}}
       <div class="form-group">
         <label for="Objet">Objet*:</label>
-        <input type="text" class="form-control" id="Objet" [(ngModel)]="objet">
+        <input type="text" class="form-control" id="Objet" [(ngModel)]="objet" name="objet">
       </div>
       <div class="form-group">
         <label for="Immeuble">Immeuble*:</label>
-        <select class="form-control" [(ngModel)]="immeuble">
+        <select class="form-control" [(ngModel)]="immeuble" name="immeuble">
 				<option selected="selected">Sélectionner un immeuble</option>
 				<option value="0">9992, 2 rue Test</option>
 				<option value="1">9991, 41 BD DE CRETEIL</option>
@@ -18,7 +18,7 @@
       </div>
       <div class="form-group">
         <label for="Domaine">Domaine*:</label>
-        <select class="form-control" id="Domaine" [(ngModel)]="domaine">
+        <select class="form-control" id="Domaine" [(ngModel)]="domaine" name="domaine" >
 				<option selected="selected">Sélectionner un domaine</option>
 				<option value="2">Ascenseur</option>
 				<option value="3">Eau</option>
@@ -42,16 +42,18 @@
       </div>
       <div class="form-group">
         <label for="Description">Description:</label>
-        <textarea class="form-control" rows="5" id="Description" [(ngModel)]="description"></textarea>
+        <textarea class="form-control" rows="5" id="Description" [(ngModel)]="description" name="description"></textarea>
       </div>
       <app-piece-jointe></app-piece-jointe>
 
     <div class="form-group">
       <div>
-        <button type="submit" class="btn btn-default" nampe="deamndeInforamtion">Déposer une demande d'information</button>
+        <button type="submit" class="btn btn-default" name="deamndeInforamtion" data-toggle="modal" data-target="#myModal">Déposer une demande d'information</button>
       </div>
     </div>
     </div>
 
   </div>
 </form>
+<app-modal-success></app-modal-success>
+<app-modal-access-denied></app-modal-access-denied>

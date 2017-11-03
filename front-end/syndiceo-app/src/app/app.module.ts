@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CorpsComponent } from './corps/corps.component';
 import { FooterComponent } from './footer/footer.component';
-import { ConnexionComponent } from './connexion/connexion.component';
 import { RechercheComponent } from './recherche/recherche.component';
 import { DepotDemandeInterventionComponent } from './depot-demande-intervention/depot-demande-intervention.component';
 import { DescriptionDemandeComponent } from './description-demande/description-demande.component';
@@ -62,7 +61,6 @@ const appRoutes: Routes =[
     HeaderComponent,
     CorpsComponent,
     FooterComponent,
-    ConnexionComponent,
     RechercheComponent,
     DateInterventionComponent,
     CoproprietaireContactInterventionComponent,

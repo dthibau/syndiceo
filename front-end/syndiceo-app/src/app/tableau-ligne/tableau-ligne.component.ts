@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-tableau-ligne',
   templateUrl: './tableau-ligne.component.html',
-  styleUrls: ['./tableau-ligne.component.css']
+  styleUrls: ['./tableau-ligne.component.css'],
+  providers: [DataService]
 })
 export class TableauLigneComponent implements OnInit {
   
@@ -16,7 +18,9 @@ export class TableauLigneComponent implements OnInit {
   immeuble;
   status;
 
-  constructor() { }
+  constructor() { 
+   
+  }
 
   ngOnInit() {
   }

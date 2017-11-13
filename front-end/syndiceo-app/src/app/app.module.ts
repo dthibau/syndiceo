@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CorpsComponent } from './corps/corps.component';
 import { FooterComponent } from './footer/footer.component';
-import { RechercheComponent } from './recherche/recherche.component';
 import { DepotDemandeInterventionComponent } from './depot-demande-intervention/depot-demande-intervention.component';
 import { DescriptionDemandeComponent } from './description-demande/description-demande.component';
 import { DateInterventionComponent } from './date-intervention/date-intervention.component';
@@ -23,7 +22,7 @@ import { Menu2Component } from './menu2/menu2.component';
 import { Menu1Component } from './menu1/menu1.component';
 import { DepotDemandeInformationComponent } from './depot-demande-information/depot-demande-information.component';
 import { InformationEnCoursComponent } from './information-en-cours/information-en-cours.component';
-import { MenuInformationComponent } from './menu-information/menu-information.component';
+
 import { TableauInformationEnCoursComponent } from './tableau-information-en-cours/tableau-information-en-cours.component';
 import { TableauInformationArchiveComponent } from './tableau-information-archive/tableau-information-archive.component';
 import { TableauLigneComponent } from './tableau-ligne/tableau-ligne.component';
@@ -39,6 +38,8 @@ import { MenuDetailInformationComponent } from './menu-detail-information/menu-d
 import { DetailInterventionInformationComponent } from './detail-intervention-information/detail-intervention-information.component';
 import { DetailInterventionHistoriqueComponent } from './detail-intervention-historique/detail-intervention-historique.component';
 import { MenuDetailInterventionComponent } from './menu-detail-intervention/menu-detail-intervention.component';
+import { FiltreTabPipe } from './filtre-tab.pipe';
+
 
 const appRoutes: Routes =[
   { path: 'depot-demande-intervention', component: DepotDemandeInterventionComponent },
@@ -61,7 +62,6 @@ const appRoutes: Routes =[
     HeaderComponent,
     CorpsComponent,
     FooterComponent,
-    RechercheComponent,
     DateInterventionComponent,
     CoproprietaireContactInterventionComponent,
     PieceJointeComponent,
@@ -76,7 +76,6 @@ const appRoutes: Routes =[
     DepotDemandeInformationComponent,
     DescriptionDemandeComponent,
     InformationEnCoursComponent,
-    MenuInformationComponent,
     TableauInformationEnCoursComponent,
     TableauInformationArchiveComponent,
     TableauLigneComponent,
@@ -91,7 +90,8 @@ const appRoutes: Routes =[
     MenuDetailInformationComponent,
     DetailInterventionInformationComponent,
     DetailInterventionHistoriqueComponent,
-    MenuDetailInterventionComponent
+    MenuDetailInterventionComponent,
+    FiltreTabPipe
   ],
   imports: [
     BrowserModule,

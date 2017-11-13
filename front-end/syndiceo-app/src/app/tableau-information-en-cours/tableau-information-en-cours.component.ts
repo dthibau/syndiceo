@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {DataService} from '../data.service';
+import {Pipe, PipeTransform} from '@angular/core';
+
 
 @Component({
   selector: 'app-tableau-information-en-cours',
   templateUrl: './tableau-information-en-cours.component.html',
   styleUrls: ['./tableau-information-en-cours.component.css'],
   providers: [DataService]
+  
 })
 export class TableauInformationEnCoursComponent implements OnInit {
  
@@ -17,11 +20,12 @@ export class TableauInformationEnCoursComponent implements OnInit {
   dateIntervention;
   immeuble;
   status;
-
-  data=[];
+  filteredStatus="";
+  datas=[];
 
   constructor(dataService:DataService) { 
-    this.data=dataService.getAllInformations();
+   
+    this.datas=dataService.getAllInformations();
   }
 
   ngOnInit() {

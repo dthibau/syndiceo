@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { TableauLigneComponent } from '../tableau-ligne/tableau-ligne.component';
+import { DataService} from '../data.service';
 
 
 @Component({
   selector: 'app-tableau',
   templateUrl: './tableau.component.html',
-  styleUrls: ['./tableau.component.css']
+  styleUrls: ['./tableau.component.css'],
+  providers: [DataService]
 })
 export class TableauComponent implements OnInit {
 
   ligne = new TableauLigneComponent;
 
   lignes = [] ;
+  data = [];
   
-  constructor() { 
+  constructor(dataService:DataService) { 
+    this.data=dataService.getAllInformations();
 
     this.ligne.numero = 1;
     this.ligne.demandeur = "test naziff";
@@ -29,6 +33,7 @@ export class TableauComponent implements OnInit {
     this.lignes.push(this.ligne);
     this.lignes.push(this.ligne);
   }
+
 
   ngOnInit() {
   }

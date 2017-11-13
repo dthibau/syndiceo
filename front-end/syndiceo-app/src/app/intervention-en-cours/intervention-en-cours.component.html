@@ -1,8 +1,110 @@
 <h1>intervention en cours</h1>
-<form>
-<app-menu1></app-menu1>
-<app-tableau></app-tableau>
-</form>
+
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Acceuil</a>
+	</div>
+
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<ul class="nav navbar-nav">
+			<li class="active">
+				<a href="#">Mes demandes</a>
+			</li>
+			<li>
+				<a href="#">Toutes mes demandes</a>
+			</li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					Selectionner un immeuble
+					<strong class="caret"></strong>
+				</a>
+					<ul class="dropdown-menu" >
+
+					<li *ngFor="let item of immeubles" ><a href="#">{{item.nom}}</a></li>
+
+				<!--<ul class="dropdown-menu">
+					<li>
+						<a href="#">Action</a>
+					</li>
+					<li>
+						<a href="#">Another action</a>
+					</li>
+					<li>
+						<a href="#">Something else here</a>
+					</li>
+					<li class="divider">
+					</li>
+					<li>
+						<a href="#">Separated link</a>
+					</li>
+					<li class="divider">
+					</li>
+					<li>
+						<a href="#">One more separated link</a>
+					</li>-->
+				</ul>
+			</li>
+		</ul>
+		<form class="navbar-form navbar-left" role="search">
+			<div class="input-group">
+				<span class="input-group-addon">recherche</span>
+				<input id="msg" type="text" class="form-control" [(ngModel)]="filteredStatus" name="filteredStatus" placeholder="Entrez une recherche ici...">
+			</div>
+		</form>
+	</div>
+
+</nav>
 
 
-	
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				N°
+			</th>
+			<th>
+				Objet
+			</th>
+			<th>
+				Date de création
+			</th>
+			<th>
+				Domaine
+			</th>
+			<th>
+				Demandeur
+			</th>
+			<th>
+				immeuble
+			</th>
+			<th>
+				Status
+			</th>
+		</tr>
+	</thead>
+
+	<tbody *ngFor="let data of datas | filter:filteredStatus:'objet' ">
+		<tr>
+			<td> {{data.numero}} </td>
+			<td> {{data.objet}} </td>
+			<td> {{data.dateCreation}} </td>
+			<td> {{data.demandeur}} </td>
+			<td> {{data.dateIntervention}} </td>
+			<td> {{data.immeuble}} </td>
+			<td> {{data.status}} </td>
+			<td>
+				<div class="col-md-12">
+					<button type="button" class="btn btn-primary">j'abandonne la demande	</button>
+				</div>
+			</td>
+		</tr>
+	</tbody>
+</table>
